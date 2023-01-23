@@ -34,9 +34,10 @@ def feature_selection(filepath, kfeature, n1=1,n2=5,min=10,bi=False):
 
     fit = bestfeatures.fit(train_bool_matrix,y_train)
     dfscores = pd.DataFrame(fit.scores_)
+#     save the training and testing data
     scipy.io.mmwrite("./tr-data/train_bleach_sel"+str(kfeature)+".mtx", train_new)
     scipy.io.mmwrite("./te-data/test_bleach_sel"+str(kfeature)+".mtx", test_new)
-
+#     save the features and their scores
     dfcolumns = pd.DataFrame(features)
     #concat two dataframes for better visualization 
     featureScores = pd.concat([dfcolumns,dfscores],axis=1)
