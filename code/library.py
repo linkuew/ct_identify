@@ -1,13 +1,24 @@
 import json
 import getopt,sys
+import scipy.sparse
+import scipy.io
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_selection import SelectKBest, mutual_info_classif, chi2, f_regression, f_classif
 
 glob_dict = {'bf' : 0, 'fe' : 1, 'cc' : 2, 'va' : 3, 'pg' : 4}
 
 ##
 # Prints out the usage statements
 ##
-def usage():
-    print("Usage: python main.py -d [bf|fe|cl|va|pg] -t x,y -f [char|word] -r i,j")
+def usage(script_name):
+    print("Usage: python " + script_name + " -d [bf|fe|cl|va|pg] -t x,y -f [char|word] -r i,j",
+            end='')
+    if script_name[0] == 'f':
+        print('-k [num_features]')
+        print('-s [selection_function]')
     print()
     print("-d, dataset to use")
     print("\t bf = bigfoot")
@@ -15,17 +26,23 @@ def usage():
     print("\t cc = climate change")
     print("\t va = vaccines")
     print("\t pg = pizzagate")
-    print("-t, train percent, test percent, e.g.: 70,30")
     print("-f, feature set, either 'word' or 'char'")
+    print("-t, train percent, test percent, e.g.: 70,30")
     print("-r, n-gram range for features, e.g. 1,3")
+    if script_name[0] == 'f':
+        print("-k, number of top features, use 'all' to get all features")
+        print("-s, selection function for features, either 'chi2' or 'mutual_info_classif'")
     print("-h, print this help page")
     return 0
 
-def process_args():
+def process_args(script_name):
     args = []
 
     try:
-        optlist, _ = getopt.getopt(sys.argv[1:], "hd:t:f:r:")
+        if script_name[0] == 'c':
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:t:f:r:")
+        elif script_name[0] == 'f':
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:t:f:r:k:s:")
 
         for arg, val in optlist:
             if arg == "-h":
@@ -42,12 +59,20 @@ def process_args():
                 upp = int(tmp[1])
             elif arg == "-f":
                 feat = val
+            elif arg == "-k":
+                num_feat = val
+            elif arg == "-s":
+                func = val
     except Exception as e:
         print(e)
         usage()
         exit(-1)
 
-    return dataset, train, test, feat, low, upp
+    if script_name[0] == 'c':
+        return dataset, train, test, feat, low, upp
+    else:
+        return dataset, train, test, feat, low, upp, num_feat, func
+
 
 ##
 # function to partition dataset according to our pre-determined
@@ -127,3 +152,62 @@ def x_y_split(data):
             Y.append(0)
 
     return X, Y
+
+##
+# Feature selection algorithm
+#
+# input: filepath to the
+#
+#
+##
+def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, bi=False):
+    # build the filename here
+    filename = str(kfeature) + '_' \
+            + func + '_' \
+            + str(feat) + '_' \
+            + str(n1) + '-' + str(n2) + '_' \
+            + 'ct_' + str(list(glob_dict.keys())[list(glob_dict.values()).index(ct_i)]) \
+            + '.txt'
+
+    # split data
+    x_train, x_test, y_train, y_test = train_test_split(xdata, ydata, test_size = 0.3)
+
+    # set up vectorizing object
+    vectorizer_word = CountVectorizer(analyzer = feat,
+            ngram_range=(n1, n2),
+            min_df=min,
+            binary=bi,
+            token_pattern=r'\b\w+\b')
+
+    # fit this vectorizer to the training matrix
+    train_bool_matrix = vectorizer_word.fit_transform(x_train)
+    test_bool_matrix = vectorizer_word.transform(x_test)
+
+    # get the features from the vectorizer
+    features = vectorizer_word.get_feature_names_out()
+
+    # find the best features according to our function
+    bestfeatures = SelectKBest(globals()[func], k = kfeature)
+
+    # update the vectorizer tot he best features
+    train_new = bestfeatures.fit_transform(train_bool_matrix, y_train)
+    test_new = bestfeatures.transform(test_bool_matrix)
+
+    print(train_new.shape)
+    print(test_new.shape)
+
+    fit = bestfeatures.fit(train_bool_matrix,y_train)
+    dfscores = pd.DataFrame(fit.scores_)
+
+    #scipy.io.mmwrite("../results/train_bleach_sel"+str(kfeature)+".mtx", train_new)
+    #scipy.io.mmwrite("../results/test_bleach_sel"+str(kfeature)+".mtx", test_new)
+
+    dfcolumns = pd.DataFrame(features)
+
+    #concat two dataframes for better visualization
+    featureScores = pd.concat([dfcolumns,dfscores],axis=1)
+    featureScores.columns = ['Specs','Score']  #naming the dataframe columns
+
+    # write to results folder
+    rank = featureScores.nlargest(500,'Score')
+    rank.to_csv('../results/' + filename)
