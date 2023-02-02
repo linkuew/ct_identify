@@ -209,5 +209,5 @@ def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, 
     featureScores.columns = ['Specs','Score']  #naming the dataframe columns
 
     # write to results folder
-    rank = featureScores.nlargest(500,'Score')
+    rank = featureScores.nlargest(1000,'Score')
     rank.to_csv('../results/' + filename)
