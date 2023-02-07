@@ -10,6 +10,18 @@ from sklearn.feature_selection import SelectKBest, mutual_info_classif, chi2, f_
 
 glob_dict = {'bf' : 0, 'fe' : 1, 'cc' : 2, 'va' : 3, 'pg' : 4}
 
+# if we use the fixed data and read them from seed, please comment out the following line
+# glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'vaccine', 'pg' : 'pizzagate'}
+
+##
+# Read data from conspiracy seed 
+##
+def read_data(seed):
+    tr = pd.read_pickle('../data/train_'+seed+'.pkl')
+    te = pd.read_pickle('../data/test_'+seed+'.pkl')
+    return tr['text'],tr['label'],te['text'],te['label']
+
+
 ##
 # Prints out the usage statements
 ##
