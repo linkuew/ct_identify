@@ -5,6 +5,7 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import GridSearchCV
 
 from library import *
 from feature_selection_template import *
@@ -19,6 +20,10 @@ from feature_selection_template import *
 # First run: $ python main.py -h
 #
 ############################################################################
+
+
+# Feb 6th: commented one line for reading the existing data by seeds, see line 56
+# Feb 6th: added gridsearch and classfication report
 
 
 def main():
@@ -47,6 +52,8 @@ def main():
     xtrain, xtest, ytrain, ytest = train_test_split(xdata, ydata,
                                                     train_size = train_perc,
                                                     test_size = test_perc)
+    
+#     xtrain, xtest, ytrain, ytest  = read_data(seed)
 
     # vectorize the data
     vectorizer = CountVectorizer(analyzer = feat, ngram_range = (n1, n2))
@@ -55,8 +62,13 @@ def main():
     vec_xtrain = vectorizer.fit_transform(xtrain)
     vec_xtest = vectorizer.transform(xtest)
 
-    # create SVM model
-    svm = LinearSVC(C = 1.0)
+    # create SVM model and grid search
+    svc = LinearSVC()
+    param_grid = {'loss': ['squared_hinge'],
+                      'random_state': [1291],
+                      'C': [0.01,0.1,1]}
+
+    model = GridSearchCV(svc, param_grid, n_jobs=16, verbose=1, cv=5)            
 
     # print out our model parameters
     print(svm.get_params)
@@ -69,6 +81,7 @@ def main():
 
     # check how our model did
     print("SVM accuracy: ", accuracy_score(preds, ytest) * 100)
+    print (classification_report(ytest, preds, digits=4))
 
 
 if __name__ == "__main__":
