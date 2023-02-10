@@ -21,12 +21,12 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 
 ### features
 
-try different feature combinations: 1) word ngram 2) char ngram 3) transformers 4) other features: dep?
+try different feature combinations: 1) word ngram 2) char ngram 3) transformers 4) dep triples (word, head, deprel)
 
 try different feature selection methods: 1) chi2 2) mutual information 3) select by models: logistic regression or random forest
 
 ### pipleline
 
-1. train on one and test on one
+1. train on one and test on the others (four)
 
-2. train on one and test on others
+2. train on four (same size) and test on one
