@@ -14,12 +14,12 @@ glob_dict = {'bf' : 0, 'fe' : 1, 'cc' : 2, 'va' : 3, 'pg' : 4}
 # glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'vaccine', 'pg' : 'pizzagate'}
 
 ##
-# Read data from conspiracy seed 
+# Read data from conspiracy seed
 ##
 def read_data(seed):
     tr = pd.read_pickle('../data/train_'+seed+'.pkl')
     te = pd.read_pickle('../data/test_'+seed+'.pkl')
-    return tr['text'],tr['label'],te['text'],te['label']
+    return tr['text'], te['text'], tr['label'], te['label']
 
 
 ##
@@ -223,3 +223,19 @@ def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, 
     # write to results folder
     rank = featureScores.nlargest(1000,'Score')
     rank.to_csv('../results/' + filename)
+
+def index_to_seed(index):
+    seed = ""
+
+    if index == 0:
+        seed = "big.foot"
+    elif index == 1:
+        seed = "flat.earth"
+    elif index == 2:
+        seed = "climate"
+    elif index == 3:
+        seed = "vaccine"
+    elif index == 4:
+        seed = "pizzagate"
+
+    return seed

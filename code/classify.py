@@ -3,7 +3,7 @@ import json
 import sys
 from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import GridSearchCV
 
@@ -24,6 +24,7 @@ from feature_selection_template import *
 
 # Feb 6th: commented one line for reading the existing data by seeds, see line 56
 # Feb 6th: added gridsearch and classfication report
+# Feb 10th: added default to use pickled data
 
 
 def main():
@@ -33,27 +34,27 @@ def main():
 
     data_index, train_perc, test_perc, feat, n1, n2 = process_args(sys.argv[0])
 
-    # check to make sure the LOCO partition exists
-    if not os.path.exists('../data/LOCO_partition.json'):
-        partition_dataset()
+#    # check to make sure the LOCO partition exists
+#    if not os.path.exists('../data/LOCO_partition.json'):
+#        partition_dataset()
+#
+#    # open the partitioned data
+#    with open('../data/LOCO_partition.json') as f:
+#        data = json.load(f)
+#
+#    # get the data (i realize this is inefficient)
+#    ct = split_data(data)
+#    ct = ct[data_index]
+#
+#    # split the data into x and y vectors
+#    xdata, ydata = x_y_split(ct)
+#
+#    # split the data into train and test
+#    xtrain, xtest, ytrain, ytest = train_test_split(xdata, ydata,
+#                                                    train_size = train_perc,
+#                                                    test_size = test_perc)
 
-    # open the partitioned data
-    with open('../data/LOCO_partition.json') as f:
-        data = json.load(f)
-
-    # get the data (i realize this is inefficient)
-    ct = split_data(data)
-    ct = ct[data_index]
-
-    # split the data into x and y vectors
-    xdata, ydata = x_y_split(ct)
-
-    # split the data into train and test
-    xtrain, xtest, ytrain, ytest = train_test_split(xdata, ydata,
-                                                    train_size = train_perc,
-                                                    test_size = test_perc)
-    
-#     xtrain, xtest, ytrain, ytest  = read_data(seed)
+    xtrain, xtest, ytrain, ytest  = read_data(index_to_seed(data_index))
 
     # vectorize the data
     vectorizer = CountVectorizer(analyzer = feat, ngram_range = (n1, n2))
@@ -63,12 +64,12 @@ def main():
     vec_xtest = vectorizer.transform(xtest)
 
     # create SVM model and grid search
-    svc = LinearSVC()
+    svm = LinearSVC()
     param_grid = {'loss': ['squared_hinge'],
                       'random_state': [1291],
                       'C': [0.01,0.1,1]}
 
-    model = GridSearchCV(svc, param_grid, n_jobs=16, verbose=1, cv=5)            
+    model = GridSearchCV(svm, param_grid, n_jobs=16, verbose=1, cv=5)
 
     # print out our model parameters
     print(svm.get_params)
@@ -80,8 +81,7 @@ def main():
     preds = svm.predict(vec_xtest)
 
     # check how our model did
-    print("SVM accuracy: ", accuracy_score(preds, ytest) * 100)
-    print (classification_report(ytest, preds, digits=4))
+    print(classification_report(ytest, preds, digits=4))
 
 
 if __name__ == "__main__":
