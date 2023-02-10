@@ -50,8 +50,10 @@ def get_training_data(data, seed):
     df = x_y_split(docs)
     new_df = get_samples(df)
     train, test = train_test_split(new_df, test_size = 0.2)
-    train.to_pickle('../data/data_1/train_'+seed+'.pkl')
-    test.to_pickle('../data/data_1/test_'+seed+'.pkl')
+    # train.to_pickle('../data/data_1/train_'+seed+'.pkl')
+    # test.to_pickle('../data/data_1/test_'+seed+'.pkl')
+    train.to_csv('../data/data_1/train_'+seed+'.csv')
+    test.to_csv('../data/data_1/test_'+seed+'.csv')
 
 
 def get_samples(df):
@@ -71,12 +73,14 @@ def get_samples(df):
 def merge_tr(cmb_seed_lst):
     df_lst = []
     for s in cmb_seed_lst:
-        tr = pd.read_pickle('../data/data_1/train_'+glob_dict[s]+'.pkl')
+        # tr = pd.read_pickle('../data/data_1/train_'+glob_dict[s]+'.pkl')
+        tr = pd.read_csv('../data/data_1/train_'+glob_dict[s]+'.csv')
         # 270, ((1000+356)*0.8)/4
         tr.sample(frac=1).reset_index(drop=True)
         df_lst.append(tr.iloc[:270,:])
     df = pd.concat(df_lst)
-    df.to_pickle('../data/data_4/train_'+'_'.join(cmb_seed_lst)+'.pkl')
+    # df.to_pickle('../data/data_4/train_'+'_'.join(cmb_seed_lst)+'.pkl')
+    df.to_csv('../data/data_4/train_'+'_'.join(cmb_seed_lst)+'.csv')
         
 
 glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'vaccine', 'pg' : 'pizzagate'}

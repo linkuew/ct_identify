@@ -18,15 +18,19 @@ ct_lsts = list(glob_dict.keys())
 # Read data from conspiracy seed 
 ##
 def read_data(seed,eval):
-    tr = pd.read_pickle('../data/data_1/train_'+seed+'.pkl')
-    te = pd.read_pickle('../data/test_'+eval+'.pkl')
+    # tr = pd.read_pickle('../data/data_1/train_'+seed+'.pkl')
+    # te = pd.read_pickle('../data/test_'+eval+'.pkl')
+    tr = pd.read_csv('../data/data_1/train_'+seed+'.csv')
+    te = pd.read_csv('../data/test_'+eval+'.csv')    
     print (tr.shape)
     print (te.shape)
     return tr['text'],tr['label'],te['text'],te['label']
 
 def read_data_merge(seed,eval):
-    tr = pd.read_pickle('../data/data_4/train_'+seed+'.pkl')
-    te = pd.read_pickle('../data/test_'+eval+'.pkl')
+    # tr = pd.read_pickle('../data/data_4/train_'+seed+'.pkl')
+    # te = pd.read_pickle('../data/test_'+eval+'.pkl')
+    tr = pd.read_csv('../data/data_4/train_'+seed+'.csv')
+    te = pd.read_csv('../data/test_'+eval+'.csv')
     print (tr.shape)
     print (te.shape)   
     return tr['text'],tr['label'],te['text'],te['label']
