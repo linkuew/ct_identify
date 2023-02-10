@@ -8,25 +8,33 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_selection import SelectKBest, mutual_info_classif, chi2, f_regression, f_classif
 
-glob_dict = {'bf' : 0, 'fe' : 1, 'cc' : 2, 'va' : 3, 'pg' : 4}
+# glob_dict = {'bf' : 0, 'fe' : 1, 'cc' : 2, 'va' : 3, 'pg' : 4}
 
 # if we use the fixed data and read them from seed, please comment out the following line
-# glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'vaccine', 'pg' : 'pizzagate'}
-
+glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'vaccine', 'pg' : 'pizzagate'}
+glob_dict_rev = {value:key for key, value in glob_dict.items()}
+ct_lsts = list(glob_dict.keys())
 ##
-# Read data from conspiracy seed
+# Read data from conspiracy seed 
 ##
-def read_data(seed):
-    tr = pd.read_pickle('../data/train_'+seed+'.pkl')
-    te = pd.read_pickle('../data/test_'+seed+'.pkl')
-    return tr['text'], te['text'], tr['label'], te['label']
+def read_data(seed,eval):
+    tr = pd.read_pickle('../data/data_1/train_'+seed+'.pkl')
+    te = pd.read_pickle('../data/test_'+eval+'.pkl')
+    print (tr.shape)
+    print (te.shape)
+    return tr['text'],tr['label'],te['text'],te['label']
 
-
+def read_data_merge(seed,eval):
+    tr = pd.read_pickle('../data/data_4/train_'+seed+'.pkl')
+    te = pd.read_pickle('../data/test_'+eval+'.pkl')
+    print (tr.shape)
+    print (te.shape)   
+    return tr['text'],tr['label'],te['text'],te['label']
 ##
 # Prints out the usage statements
 ##
 def usage(script_name):
-    print("Usage: python " + script_name + " -d [bf|fe|cl|va|pg] -t x,y -f [char|word] -r i,j",
+    print("Usage: python " + script_name + " -d [bf|fe|cl|va|pg] -e [bf|fe|cl|va|pg] -m [merge] -f [char|word] -r i,j",
             end='')
     if script_name[0] == 'f':
         print('-k [num_features]')
@@ -52,19 +60,28 @@ def process_args(script_name):
 
     try:
         if script_name[0] == 'c':
-            optlist, _ = getopt.getopt(sys.argv[1:], "hd:t:f:r:")
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:")
         elif script_name[0] == 'f':
-            optlist, _ = getopt.getopt(sys.argv[1:], "hd:t:f:r:k:s:")
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:k:s:")
+        
 
         for arg, val in optlist:
             if arg == "-h":
                 usage()
             elif arg == "-d":
                 dataset = glob_dict.get(val)
-            elif arg == "-t":
-                tmp = val.split(",")
-                train = int(tmp[0])
-                test = int(tmp[1])
+            elif arg == "-e":
+                eval = glob_dict.get(val)                
+            # elif arg == "-t":
+            #     tmp = val.split(",")
+            #     train = int(tmp[0])
+            #     test = int(tmp[1])
+            elif arg == "-m":
+                mode = val
+                if mode == "merge":
+                    eval = dataset 
+                    ct_lsts.remove(glob_dict_rev[dataset])
+                    dataset = '_'.join(ct_lsts)               
             elif arg == "-r":
                 tmp = val.split(",")
                 low = int(tmp[0])
@@ -81,9 +98,9 @@ def process_args(script_name):
         exit(-1)
 
     if script_name[0] == 'c':
-        return dataset, train, test, feat, low, upp
+        return dataset, eval, mode, feat, low, upp
     else:
-        return dataset, train, test, feat, low, upp, num_feat, func
+        return dataset, eval, mode, feat, low, upp, num_feat, func
 
 
 ##
@@ -223,19 +240,3 @@ def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, 
     # write to results folder
     rank = featureScores.nlargest(1000,'Score')
     rank.to_csv('../results/' + filename)
-
-def index_to_seed(index):
-    seed = ""
-
-    if index == 0:
-        seed = "big.foot"
-    elif index == 1:
-        seed = "flat.earth"
-    elif index == 2:
-        seed = "climate"
-    elif index == 3:
-        seed = "vaccine"
-    elif index == 4:
-        seed = "pizzagate"
-
-    return seed
