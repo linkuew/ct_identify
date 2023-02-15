@@ -14,7 +14,7 @@ from sklearn.feature_selection import SelectKBest, mutual_info_classif, chi2, f_
 glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'vaccine', 'pg' : 'pizzagate'}
 glob_dict_rev = {value:key for key, value in glob_dict.items()}
 ct_lsts = list(glob_dict.keys())
-##
+#
 # Read data from conspiracy seed 
 ##
 def read_data(seed,eval):
@@ -22,8 +22,6 @@ def read_data(seed,eval):
     # te = pd.read_pickle('../data/test_'+eval+'.pkl')
     tr = pd.read_csv('../data/data_1/train_'+seed+'.csv')
     te = pd.read_csv('../data/test_'+eval+'.csv')    
-    print (tr.shape)
-    print (te.shape)
     return tr['text'],tr['label'],te['text'],te['label']
 
 def read_data_merge(seed,eval):
@@ -57,6 +55,12 @@ def usage(script_name):
         print("-k, number of top features, use 'all' to get all features")
         print("-s, selection function for features, either 'chi2' or 'mutual_info_classif'")
     print("-h, print this help page")
+
+    if script_name[0] == 'b':
+        print("-ep, epoch")
+        print("-lr, learning rate")
+    print("-h, print this help page")
+
     return 0
 
 def process_args(script_name):
@@ -67,7 +71,8 @@ def process_args(script_name):
             optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:")
         elif script_name[0] == 'f':
             optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:k:s:")
-        
+        elif script_name[0] == 'b':
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:p:l:b:")        
 
         for arg, val in optlist:
             if arg == "-h":
@@ -96,6 +101,15 @@ def process_args(script_name):
                 num_feat = val
             elif arg == "-s":
                 func = val
+            # bert args, epoc, learning rate, batch
+            elif arg == "-p":
+                p = int(val)
+            elif arg == "-l":
+                l = float(val)
+            elif arg == "-b":
+                batch = int(val)           
+
+
     except Exception as e:
         print(e)
         usage()
@@ -103,6 +117,8 @@ def process_args(script_name):
 
     if script_name[0] == 'c':
         return dataset, eval, mode, feat, low, upp
+    elif script_name[0] == 'b':
+        return dataset, eval, mode, p, l, batch
     else:
         return dataset, eval, mode, feat, low, upp, num_feat, func
 
