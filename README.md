@@ -10,12 +10,21 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 
 ## experiment setup
 
-1. run all experiments on the server (cl servwer)
-2. create a virtual environment
-3. install required libraries
-4. git clone this repo
-5. to be updated, git pull
+1. run all experiments on the server (cl servwer) ssh yourusername@cl.indiana.edu
+2. create a virtual environment (optional)
+3. install required libraries (if it shows some library is in need, just type *pip3 install <packagename>*)
+4. git clone this repo to the cl server:  *git clone https://github.com/linkuew/ct_identify.git*
+5. to be updated, *git pull*
 6. run different python scripts: classify.py, bert_clf.py, feature_selection.py
+
+example command line
+
+SVM classification: *python classify.py -d bf -e fe -m merge -f word -r 1,3*
+
+Feature Selction: **
+
+BERT Classification (on Carbonate): *python bert_clf.py -d bf -e fe -m merge -p 1 -l 1e-5 -b 5*
+
 
 
 ## roadmap (temp)
