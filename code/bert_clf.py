@@ -129,8 +129,8 @@ def main():
     # dataset eval
     out_res = './res_tr_'+seed+'_te_'+seed_eval+'.csv'
 
-    report = classification_report(test['label'] , preds, digits=4)
-
+    report = classification_report(ytest, preds, digits=4, output_dict= True)
+    print (report)
     df = pd.DataFrame(report).transpose()
 
     df.to_csv(out_res)

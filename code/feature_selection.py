@@ -1,29 +1,30 @@
 from library import *
 import os, sys
 
+# python classify.py -d bf -e fe -m merge -f word -r 1,3  -k 1000 -s chi2
+
 def main():
-    if len(sys.argv) != 13:
+    if len(sys.argv) < 10:
+        print (len(sys.argv))
         usage(sys.argv[0])
         exit(1)
 
-    data_index, train_perc, test_perc, feat, n1, n2, num_feat, func = process_args(sys.argv[0])
+    seed, seed_eval, mode, feat, low, upp, num_feat, func = process_args(sys.argv[0])                                                                                                                                                                 
 
-    # check to make sure the LOCO partition exists
-    if not os.path.exists('../data/LOCO_partition.json'):
-        partition_dataset()
 
-    with open('../data/LOCO_partition.json') as f:
-        data = json.load(f)
+    print (seed)
+    print (seed_eval)
 
-    #bigfoot, climate, flat, pizza, vaccine
-    ct = split_data(data)
-    ct = ct[data_index]
+    if mode == 'merge':
+        # test on seed, train on a list without seed
+        xtrain, ytrain, xtest,  ytest = read_data_merge(seed,seed_eval)
+    else:
+        xtrain, ytrain, xtest, ytest  = read_data(seed,seed_eval)
 
-    # get x and y data from the ct
-    xdata, ydata = x_y_split(ct)
+
 
     # find best features for this ct
-    feature_selection(xdata, ydata, num_feat, n1, n2, func, feat, data_index, 10, False)
+    feature_selection(xtrain, ytrain,xtest,  ytest, num_feat, low, upp, func, feat, seed, seed_eval, 10, False)
 
 if __name__ == "__main__":
     main()

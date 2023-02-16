@@ -7,6 +7,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_selection import SelectKBest, mutual_info_classif, chi2, f_regression, f_classif
+from sklearn.svm import LinearSVC
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
+from sklearn.model_selection import GridSearchCV
 
 # glob_dict = {'bf' : 0, 'fe' : 1, 'cc' : 2, 'va' : 3, 'pg' : 4}
 
@@ -29,8 +32,8 @@ def read_data_merge(seed,eval):
     # te = pd.read_pickle('../data/test_'+eval+'.pkl')
     tr = pd.read_csv('../data/data_4/train_'+seed+'.csv')
     te = pd.read_csv('../data/test_'+eval+'.csv')
-    print (tr.shape)
-    print (te.shape)   
+    # print (tr.shape)
+    # print (te.shape)   
     return tr['text'],tr['label'],te['text'],te['label']
 ##
 # Prints out the usage statements
@@ -52,7 +55,7 @@ def usage(script_name):
     print("-t, train percent, test percent, e.g.: 70,30")
     print("-r, n-gram range for features, e.g. 1,3")
     if script_name[0] == 'f':
-        print("-k, number of top features, use 'all' to get all features")
+        print("-k, number of top features, choose the target number of features here, e.g. 1000")
         print("-s, selection function for features, either 'chi2' or 'mutual_info_classif'")
     print("-h, print this help page")
 
@@ -98,7 +101,7 @@ def process_args(script_name):
             elif arg == "-f":
                 feat = val
             elif arg == "-k":
-                num_feat = val
+                num_feat = int(val)
             elif arg == "-s":
                 func = val
             # bert args, epoc, learning rate, batch
@@ -209,19 +212,15 @@ def x_y_split(data):
 #
 #
 ##
-def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, bi=False):
+def feature_selection(xtrain, ytrain,  xtest,  ytest, kfeature, n1, n2, func, feat, seed, eval_seed, min=10, bi=False):
     # build the filename here
     filename = str(kfeature) + '_' \
             + func + '_' \
             + str(feat) + '_' \
             + str(n1) + '-' + str(n2) + '_' \
-            + 'ct_' + str(list(glob_dict.keys())[list(glob_dict.values()).index(ct_i)]) \
-            + '.txt'
-
-    # split data
-    x_train, x_test, y_train, y_test = train_test_split(xdata, ydata, test_size = 0.3)
-
-    # set up vectorizing object
+            + 'tr_' + seed
+    
+   # set up vectorizing object
     vectorizer_word = CountVectorizer(analyzer = feat,
             ngram_range=(n1, n2),
             min_df=min,
@@ -229,8 +228,8 @@ def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, 
             token_pattern=r'\b\w+\b')
 
     # fit this vectorizer to the training matrix
-    train_bool_matrix = vectorizer_word.fit_transform(x_train)
-    test_bool_matrix = vectorizer_word.transform(x_test)
+    train_bool_matrix = vectorizer_word.fit_transform(xtrain)
+    test_bool_matrix = vectorizer_word.transform(xtest)
 
     # get the features from the vectorizer
     features = vectorizer_word.get_feature_names_out()
@@ -238,14 +237,14 @@ def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, 
     # find the best features according to our function
     bestfeatures = SelectKBest(globals()[func], k = kfeature)
 
-    # update the vectorizer tot he best features
-    train_new = bestfeatures.fit_transform(train_bool_matrix, y_train)
+    # update the vectorizer to the best features
+    train_new = bestfeatures.fit_transform(train_bool_matrix, ytrain)
     test_new = bestfeatures.transform(test_bool_matrix)
 
     print(train_new.shape)
     print(test_new.shape)
 
-    fit = bestfeatures.fit(train_bool_matrix,y_train)
+    fit = bestfeatures.fit(train_bool_matrix,ytrain)
     dfscores = pd.DataFrame(fit.scores_)
 
     #scipy.io.mmwrite("../results/train_bleach_sel"+str(kfeature)+".mtx", train_new)
@@ -259,4 +258,31 @@ def feature_selection(xdata, ydata, kfeature, n1, n2, func, feat, ct_i, min=10, 
 
     # write to results folder
     rank = featureScores.nlargest(1000,'Score')
-    rank.to_csv('../results/' + filename)
+    rank.to_csv('./' + filename+'.txt')
+
+    # create SVM model and grid search
+    svc = LinearSVC()
+    param_grid = {'loss': ['squared_hinge'],
+                      'random_state': [1291],
+                      'C': [0.01,0.1,1]}
+
+    model = GridSearchCV(svc, param_grid, n_jobs=16, verbose=1, cv=5)            
+
+    # print out our model parameters
+    # print(model.get_params)
+
+    # fit data
+    model.fit(train_new, ytrain)
+
+    # predict with our svm model
+    preds = model.predict(test_new)
+
+    # check how our model did
+    # dataset eval
+    out_res = filename+ '_te_'+eval_seed+'.res.csv'
+
+    report = classification_report(ytest, preds, digits=4, output_dict= True)
+    print (report)
+    df = pd.DataFrame(report).transpose()
+
+    df.to_csv(out_res)
