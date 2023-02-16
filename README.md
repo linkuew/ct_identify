@@ -64,7 +64,7 @@ pg = pizzagate
 
 #### BERT Classification (on Carbonate): 
 
-*python bert_clf.py -d bf -e fe -m merge -p 1 -l 1e-5 -b 5*
+*python bert_clf.py -d bf -e fe -m merge -p 5 -l 1e-5 -b 5*
 
 
 
