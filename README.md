@@ -19,7 +19,42 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 
 ### Example command line
 
+#### Parameters
+
+
+-d, dataset to use
+
+bf = bigfoot
+
+fe = flat earth
+
+cc = climate change
+
+va = vaccines
+
+pg = pizzagate
+
+-e, dataset to do the evaluation
+
+-f, feature set, either 'word' or 'char', this is for classy.py
+
+-r, n-gram range for features, e.g. 1,3, this is for classy.py
+
+-k, number of top features, use 'all' to get all features, this is for feature_selection.py
+
+
+-s, selection function for features, either 'chi2' or 'mutual_info_classif', this is for feature_selection.py
+
+-p, epoch for training the bert classifier, e.g. 3, this is for bert_clf.py
+
+-r, learning rate for training the bert classifier, e.g. 1e-5, this is for bert_clf.py
+
+-b, batch size for training the bert classifier, e.g. 32, this is for bert_clf.py
+
+
 #### SVM classification (on CL server): 
+
+
 
 *python3 classify.py -d bf -e fe -m merge -f word -r 1,3*
 
