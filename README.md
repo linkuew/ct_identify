@@ -60,7 +60,7 @@ pg = pizzagate
 
 #### Feature Selction (on CL server):
 
-**
+*python3 feature_selection.py -d bf -e fe -m merge -f word -r 1,3  -k 1000 -s chi2*
 
 #### BERT Classification (on Carbonate): 
 
