@@ -17,13 +17,19 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 5. to be updated, *git pull*
 6. run different python scripts: classify.py, bert_clf.py, feature_selection.py
 
-example command line
+### Example command line
 
-SVM classification: *python classify.py -d bf -e fe -m merge -f word -r 1,3*
+#### SVM classification (on CL server): 
 
-Feature Selction: **
+*python3 classify.py -d bf -e fe -m merge -f word -r 1,3*
 
-BERT Classification (on Carbonate): *python bert_clf.py -d bf -e fe -m merge -p 1 -l 1e-5 -b 5*
+#### Feature Selction (on CL server):
+
+**
+
+#### BERT Classification (on Carbonate): 
+
+*python bert_clf.py -d bf -e fe -m merge -p 1 -l 1e-5 -b 5*
 
 
 
