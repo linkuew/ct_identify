@@ -54,7 +54,7 @@ pg = pizzagate
 
 #### SVM classification (on CL server): 
 
-
+!!! USE python3 in the cl server
 
 *python3 classify.py -d bf -e fe -m merge -f word -r 1,3*
 
