@@ -64,7 +64,12 @@ pg = pizzagate
 
 #### BERT Classification (on Carbonate): 
 
+*sbatch sbatch_bert.bash*
+
+include the following line in the batch file:
+
 *python bert_clf.py -d bf -e fe -m merge -p 5 -l 1e-5 -b 5*
+
 
 
 
