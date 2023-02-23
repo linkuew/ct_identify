@@ -14,8 +14,9 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 2. create a virtual environment (optional)
 3. install required libraries (if it shows some library is in need, just type *pip3 install packagename*)
 4. git clone this repo to the cl server:  *git clone https://github.com/linkuew/ct_identify.git*
-5. to be updated, *git pull*
-6. run different python scripts: classify.py, bert_clf.py, feature_selection.py
+5. go to the code folder, *cd ./ct_identify/code*
+6. to be updated, *git pull*
+7. run different python scripts: classify.py, bert_clf.py, feature_selection.py
 
 ### Example command line
 
