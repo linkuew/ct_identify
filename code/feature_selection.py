@@ -4,7 +4,8 @@ import os, sys
 # python classify.py -d bf -e fe -m merge -f word -r 1,3  -k 1000 -s chi2
 
 def main():
-    if len(sys.argv) < 10:
+    if len(sys.argv) < 8:
+        print ('Wrong number of params')
         print (len(sys.argv))
         usage(sys.argv[0])
         exit(1)
