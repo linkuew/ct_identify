@@ -17,6 +17,8 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 5. go to the code folder, *cd ./ct_identify/code*
 6. to be updated, *git pull*
 7. run different python scripts: classify.py, bert_clf.py, feature_selection.py
+8. download all the result files from the server. If you use windows, try WinSCP, if you use Mac, try Cyberduck
+9. upload the results to the onedrive shared folder
 
 ### Example command line
 
