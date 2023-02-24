@@ -16,11 +16,8 @@ from transformers import AutoModelForSequenceClassification
 from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
 from datasets import load_metric
-
-
-
-
 from library import *
+
 
 # load model
 model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
@@ -39,7 +36,7 @@ tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 # I will add the batch script in src soon
 # 
 # After setting up the environment in Carbonate
-# Run: 
+# Run: sbatch sbatch_bert.bash
 ############################################################################
 
 # Prepare the text inputs for the model
@@ -76,7 +73,6 @@ def main():
     
     train = pd.concat([xtrain, ytrain], axis=1)
     test = pd.concat([xtest, ytest], axis=1)
-
 
 
     train['label'] = train['label'].replace({'mainstream':0, 'conspiracy':1})
@@ -124,14 +120,20 @@ def main():
 
 
     trainer.train()
+    trainer.evaluate()
     
     # Eval on test set
     predictions = trainer.predict(tokenized_test)
     preds = np.argmax(predictions.predictions, axis=-1)
 
-    print (classification_report(ytest, preds, digits=4))
+    # dataset eval
+    out_res = './res_tr_'+seed+'_te_'+seed_eval+'.csv'
 
+    report = classification_report(ytest, preds, digits=4, output_dict= True)
+    print (report)
+    df = pd.DataFrame(report).transpose()
 
+    df.to_csv(out_res)
 
 
 if __name__ == "__main__":
