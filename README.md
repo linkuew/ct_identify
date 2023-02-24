@@ -55,6 +55,8 @@ pg = pizzagate
 -b, batch size for training the bert classifier, e.g. 32, this is for bert_clf.py
 
 
+### Use Command line to run script: 
+
 #### SVM classification (on CL server): 
 
 !!! USE python3 in the cl server
@@ -74,7 +76,13 @@ include the following line in the batch file:
 *python bert_clf.py -d bf -e fe -m merge -p 5 -l 1e-5 -b 5*
 
 
+### Use bash script to run experiments for different parameters: 
 
+*bash <bash_script_name>*
+
+for example, if you want to do experiments on all CTs with the merge mode using word ngram do feature selection (chi2), try the following:
+
+*bash feat_sel.sh*
 
 ## roadmap (temp)
 
