@@ -129,7 +129,10 @@ def main():
     # dataset eval
     out_res = './res_tr_'+seed+'_te_'+seed_eval+'.csv'
 
-    report = classification_report(ytest, preds, digits=4, output_dict= True)
+    transform_labels = ['mainstream' if x == 0 else x for x in preds]
+    transform_labels = ['conspiracy' if x == 1 else x for x in transform_labels]
+
+    report = classification_report(ytest, transform_labels, digits=4, output_dict= True)
     print (report)
     df = pd.DataFrame(report).transpose()
 
