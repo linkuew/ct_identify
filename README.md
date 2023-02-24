@@ -78,11 +78,13 @@ include the following line in the batch file:
 
 ### Use bash script to run experiments for different parameters: 
 
-*bash <bash_script_name>*
+*nohup bash <bash_script_name>*
+
+add *nohup* will let the script not stop when the user logs out
 
 for example, if you want to do experiments on all CTs with the one mode (train on one test on another) using word ngram do feature selection (chi2), try the following:
 
-*bash feat_sel.sh*
+*nohup bash feat_sel.sh*
 
 ## roadmap (temp)
 
