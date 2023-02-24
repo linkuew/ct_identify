@@ -1,5 +1,9 @@
 #!/bin/bash
 
+<<<<<<< HEAD
+=======
+#SBATCH --account r00018
+>>>>>>> 208ab7423b54c6b954791fb8c1dcdd0a086abf80
 #SBATCH -p dl
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
