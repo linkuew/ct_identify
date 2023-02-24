@@ -80,7 +80,7 @@ include the following line in the batch file:
 
 *bash <bash_script_name>*
 
-for example, if you want to do experiments on all CTs with the merge mode using word ngram do feature selection (chi2), try the following:
+for example, if you want to do experiments on all CTs with the one mode (train on one test on another) using word ngram do feature selection (chi2), try the following:
 
 *bash feat_sel.sh*
 
