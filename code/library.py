@@ -232,7 +232,7 @@ def feature_selection(xtrain, ytrain,  xtest,  ytest, kfeature, n1, n2, func, fe
     test_bool_matrix = vectorizer_word.transform(xtest)
 
     # get the features from the vectorizer
-    features = vectorizer_word.get_feature_names_out()
+    features = vectorizer_word.get_feature_names()
 
     # find the best features according to our function
     bestfeatures = SelectKBest(globals()[func], k = kfeature)
