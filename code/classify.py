@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import os
 import json
 import sys
@@ -212,4 +211,3 @@ def main():
 
 if __name__ == "__main__":
     main()
->>>>>>> 208ab7423b54c6b954791fb8c1dcdd0a086abf80
