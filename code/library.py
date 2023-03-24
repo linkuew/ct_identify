@@ -104,6 +104,12 @@ def process_args(script_name):
                 num_feat = int(val)
             elif arg == "-s":
                 func = val
+            # add arg for dependency triples
+            elif arg == "-y":
+                dep = val
+                if dep == "true":
+                    eval = eval+'.dep' 
+                    dataset = dataset+'.dep'                  
             # bert args, epoc, learning rate, batch
             elif arg == "-p":
                 p = int(val)
