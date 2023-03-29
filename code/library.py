@@ -71,11 +71,11 @@ def process_args(script_name):
 
     try:
         if script_name[0] == 'c':
-            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:")
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:y:o:")
         elif script_name[0] == 'f':
-            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:k:s:")
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:f:r:k:s:y:o:")
         elif script_name[0] == 'b':
-            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:p:l:b:")        
+            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:p:l:b:o:")        
 
         for arg, val in optlist:
             if arg == "-h":
@@ -104,12 +104,14 @@ def process_args(script_name):
                 num_feat = int(val)
             elif arg == "-s":
                 func = val
-            # add arg for dependency triples
+            elif arg == "-o":
+                outpath = val
+            # add dependency check
             elif arg == "-y":
                 dep = val
                 if dep == "true":
                     eval = eval+'.dep' 
-                    dataset = dataset+'.dep'                  
+                    dataset = dataset+'.dep'   
             # bert args, epoc, learning rate, batch
             elif arg == "-p":
                 p = int(val)
@@ -125,11 +127,11 @@ def process_args(script_name):
         exit(-1)
 
     if script_name[0] == 'c':
-        return dataset, eval, mode, feat, low, upp
+        return dataset, eval, mode, feat, low, upp, outpath
     elif script_name[0] == 'b':
-        return dataset, eval, mode, p, l, batch
+        return dataset, eval, mode, p, l, batch, outpath
     else:
-        return dataset, eval, mode, feat, low, upp, num_feat, func
+        return dataset, eval, mode, feat, low, upp, num_feat, func, outpath
 
 
 ##
@@ -238,7 +240,7 @@ def feature_selection(xtrain, ytrain,  xtest,  ytest, kfeature, n1, n2, func, fe
     test_bool_matrix = vectorizer_word.transform(xtest)
 
     # get the features from the vectorizer
-    features = vectorizer_word.get_feature_names()
+    features = vectorizer_word.get_feature_names_out()
 
     # find the best features according to our function
     bestfeatures = SelectKBest(globals()[func], k = kfeature)
