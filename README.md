@@ -39,9 +39,11 @@ pg = pizzagate
 
 -e, dataset to do the evaluation
 
--f, feature set, either 'word' or 'char', this is for classy.py
+-f, feature set, either 'word', 'char', 'pos', or 'dep', this is for classy.py
 
 -r, n-gram range for features, e.g. 1,3, this is for classy.py
+
+-o, the path of the results output folder
 
 -k, number of top features, use 'all' to get all features, this is for feature_selection.py
 
@@ -61,11 +63,11 @@ pg = pizzagate
 
 !!! USE python3 in the cl server
 
-*python3 classify.py -d bf -e fe -m merge -f word -r 1,3*
+*python3 classify.py -d bf -e fe -m merge -f word -r 1,3 -o ./result_svm_mix/*
 
 #### Feature Selction (on CL server):
 
-*python3 feature_selection.py -d bf -e fe -m merge -f word -r 1,3  -k 1000 -s chi2*
+*python3 feature_selection.py -d bf -e fe -m merge -f word -r 1,3  -k 1000 -s chi2 -o ./result_feat_mix/*
 
 #### BERT Classification (on Carbonate): 
 
@@ -73,7 +75,7 @@ pg = pizzagate
 
 include the following line in the batch file:
 
-*python bert_clf.py -d bf -e fe -m merge -p 5 -l 1e-5 -b 5*
+*python bert_clf.py -d bf -e fe -m merge -p 5 -l 1e-5 -b 5 -o ./result_bert_mix/*
 
 
 ### Use bash script to run experiments for different parameters: 
