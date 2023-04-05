@@ -58,7 +58,7 @@ def main():
         usage(sys.argv[0])
         exit(1)
 
-    seed, seed_eval, mode, ep, lr, batch = process_args(sys.argv[0])
+    seed, seed_eval, mode, ep, lr, batch, outpath = process_args(sys.argv[0])
 
     print (seed)
     print (seed_eval)
@@ -127,7 +127,7 @@ def main():
     preds = np.argmax(predictions.predictions, axis=-1)
 
     # dataset eval
-    out_res = './res_tr_'+seed+'_te_'+seed_eval+'.csv'
+    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'.csv'
 
     transform_labels = ['mainstream' if x == 0 else x for x in preds]
     transform_labels = ['conspiracy' if x == 1 else x for x in transform_labels]
