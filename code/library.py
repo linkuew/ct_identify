@@ -99,19 +99,23 @@ def process_args(script_name):
                 low = int(tmp[0])
                 upp = int(tmp[1])
             elif arg == "-f":
-                feat = val
+                if val == 'dep':
+                    eval = eval+'.dep' 
+                    dataset = dataset+'.dep'
+                    feat = 'word'
+                elif val == 'pos':
+                    eval = eval+'.pos' 
+                    dataset = dataset+'.pos' 
+                    feat = 'word'
+                else:  
+                    feat = val
             elif arg == "-k":
                 num_feat = int(val)
             elif arg == "-s":
                 func = val
             elif arg == "-o":
                 outpath = val
-            # add dependency check
-            elif arg == "-y":
-                dep = val
-                if dep == "true":
-                    eval = eval+'.dep' 
-                    dataset = dataset+'.dep'   
+
             # bert args, epoc, learning rate, batch
             elif arg == "-p":
                 p = int(val)
