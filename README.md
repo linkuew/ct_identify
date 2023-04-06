@@ -39,7 +39,7 @@ pg = pizzagate
 
 -e, dataset to do the evaluation
 
--f, feature set, either 'word', 'char', 'pos', or 'dep', this is for classy.py
+-f, feature set, either 'word', 'char', 'pos', 'dep', or 'wp' (word&pos, which is content word bleaching) this is for classy.py
 
 -r, n-gram range for features, e.g. 1,3, this is for classy.py
 
