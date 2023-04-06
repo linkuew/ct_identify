@@ -107,6 +107,10 @@ def process_args(script_name):
                     eval = eval+'.pos' 
                     dataset = dataset+'.pos' 
                     feat = 'word'
+                elif val == 'wp':
+                    eval = eval+'.wp' 
+                    dataset = dataset+'.wp' 
+                    feat = 'word'                
                 else:  
                     feat = val
             elif arg == "-k":
