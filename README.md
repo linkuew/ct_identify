@@ -92,12 +92,42 @@ for example, if you want to do experiments on all CTs with the one mode (train o
 
 ### features
 
-try different feature combinations: 1) word ngram: done! 2) char ngram: done! 3) transformers: done! 4) dep triples (word, head, deprel): TODO
+#### word ngram
+The features are 1-3 word ngrams
 
-try different feature selection methods: 1) chi2 2) mutual information 3) select by models: logistic regression or random forest
+#### char ngram
+
+#### transformers
+finetune on bert-base model
+
+#### dep triples
+we first use Stanza to do the dependency parsing, then we extract the dependency triples.
+dependency triples: (word, head of the word, dependency relation tag), for example, John loves Marry, for the word 'john', its head is 'loves', the rel is 'nsubj'
+
+### delexicalized features
+
+#### pos tags
+
+use pos tags as features
+
+#### bleach content words
+
+replace the content words (noun, verb, adjective, adverb) with their pos tags
+
+#### bleach topic words
+
+bleach the topic words from LOCO paper
+
+
+### feature selection
+
+try different feature selection methods: 1) chi2 (done!) 2) mutual information 3) select by models: logistic regression or random forest
 
 ### pipleline
 
 1. train on one and test on the others (four)
 
 2. train on four (same size) and test on one
+
+
+### bleac
