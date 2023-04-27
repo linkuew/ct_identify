@@ -25,22 +25,14 @@ def read_data(seed,eval):
     tr = pd.read_csv('../data/train_'+seed+'.csv')
     val = pd.read_csv('../data/val_'+seed+'.csv')
     te = pd.read_csv('../data/test_'+eval+'.csv')
-
-    # training = pd.concat([tr, te], ignore_index=True)
-    # split_index = [-1]*tr.shape[0]+[0]*val.shape[0]
         
-    print (tr.shape)
-    print (te.shape)
     return tr, te, val
 
 def read_data_merge(seed,eval):
     tr = pd.read_csv('../data/data_4/train_'+seed+'.csv')
-    val = pd.read_csv('../data/val_'+seed+'.csv')
+    val = pd.read_csv('../data/data_4/val_'+seed+'.csv')
     te = pd.read_csv('../data/test_'+eval+'.csv')
 
-
-    print (tr.shape)
-    print (te.shape) 
     return tr, te, val
 
     
@@ -163,6 +155,8 @@ def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval
     train_bool_matrix = vectorizer_word.fit_transform(train['text'])
     test_bool_matrix = vectorizer_word.transform(test['text'])
 
+    print(train_bool_matrix.shape)
+
     # get the features from the vectorizer
     features = vectorizer_word.get_feature_names_out()
 
@@ -173,8 +167,7 @@ def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval
     train_new = bestfeatures.fit_transform(train_bool_matrix, train['label'])
     test_new = bestfeatures.transform(test_bool_matrix)
 
-    print(train_new.shape)
-    print(test_new.shape)
+    
 
     fit = bestfeatures.fit(train_bool_matrix,train['label'])
     dfscores = pd.DataFrame(fit.scores_)

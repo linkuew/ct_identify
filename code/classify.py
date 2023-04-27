@@ -73,6 +73,8 @@ def main():
     vec_xtrain = vectorizer.fit_transform(tr['text'])
     vec_xtest = vectorizer.transform(te['text'])
 
+    print(vec_xtrain.shape)
+
     # create a new set combining tr and dev
     train_all = pd.concat([tr, val], ignore_index=True)
     split_index = [-1]*tr.shape[0]+[0]*val.shape[0]
@@ -97,7 +99,7 @@ def main():
 
     # print out our model parameters
     print(model.best_params_)
-    
+
     # predict with our svm model
     preds = model.predict(vec_xtest)
 

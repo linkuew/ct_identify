@@ -24,7 +24,7 @@ def main():
 
 
     # find best features for this ct
-    feature_selection(train, test, val, num_feat, low, upp, func, feat, seed, seed_eval, 10, False)
+    feature_selection(train, test, val, num_feat, low, upp, func, feat, seed, seed_eval, outpath, 10, False)
 
 if __name__ == "__main__":
     main()
