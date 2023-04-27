@@ -9,7 +9,7 @@ def main():
         usage(sys.argv[0])
         exit(1)
 
-    seed, seed_eval, mode, feat, low, upp, num_feat, func = process_args(sys.argv[0])                                                                                                                                                                 
+    seed, seed_eval, mode, feat, low, upp, num_feat, func, outpath = process_args(sys.argv[0])                                                                                                                                                                 
 
 
     print (seed)
@@ -17,14 +17,14 @@ def main():
 
     if mode == 'merge':
         # test on seed, train on a list without seed
-        xtrain, ytrain, xtest,  ytest = read_data_merge(seed,seed_eval)
+        train, test, val = read_data_merge(seed,seed_eval)
     else:
-        xtrain, ytrain, xtest, ytest  = read_data(seed,seed_eval)
+        train, test, val  = read_data(seed,seed_eval)
 
 
 
     # find best features for this ct
-    feature_selection(xtrain, ytrain,xtest,  ytest, num_feat, low, upp, func, feat, seed, seed_eval, 10, False)
+    feature_selection(train, test, val, num_feat, low, upp, func, feat, seed, seed_eval, 10, False)
 
 if __name__ == "__main__":
     main()

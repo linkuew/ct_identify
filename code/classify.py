@@ -62,43 +62,54 @@ def main():
     
     if mode == 'merge':
         # test on seed, train on a list without seed
-        xtrain, ytrain, xtest,  ytest = read_data_merge(seed,seed_eval)
+        tr, te, val = read_data_merge(seed,seed_eval)
     else:
-        xtrain, ytrain, xtest, ytest  = read_data(seed,seed_eval)
+        tr, te, val  = read_data(seed,seed_eval)
 
     # vectorize the data
-    vectorizer = CountVectorizer(analyzer = feat, ngram_range = (n1, n2))
+    vectorizer = CountVectorizer(analyzer = feat, ngram_range = (n1, n2), min_df = 10, binary=False,token_pattern=r'\b\w+\b')
 
     # convert data to vectorized form
-    vec_xtrain = vectorizer.fit_transform(xtrain)
-    vec_xtest = vectorizer.transform(xtest)
+    vec_xtrain = vectorizer.fit_transform(tr['text'])
+    vec_xtest = vectorizer.transform(te['text'])
+
+    # create a new set combining tr and dev
+    train_all = pd.concat([tr, val], ignore_index=True)
+    split_index = [-1]*tr.shape[0]+[0]*val.shape[0]
+    pds = PredefinedSplit(test_fold = split_index)
+
+
+    train_all_matrix = vectorizer.transform(train_all['text'])
+
 
     # create SVM model and grid search
     svc = LinearSVC()
-    param_grid = {'loss': ['squared_hinge'],
-                      'random_state': [1291],
+    param_grid = {'loss': ['squared_hinge', 'hinge'],
+                      'random_state': [1291, 42],
                       'C': [0.01,0.1,1]}
 
-    model = GridSearchCV(svc, param_grid, n_jobs=16, verbose=1, cv=5)            
+    model = GridSearchCV(svc, param_grid, n_jobs=16, verbose=1, cv=pds)           
 
-    # print out our model parameters
-    # print(model.get_params)
+
 
     # fit data
-    model.fit(vec_xtrain, ytrain)
+    model.fit(train_all_matrix, train_all['label'])
 
+    # print out our model parameters
+    print(model.best_params_)
+    
     # predict with our svm model
     preds = model.predict(vec_xtest)
 
     # check how our model did
-    print("SVM accuracy: ", accuracy_score(preds, ytest) * 100)
-    print (classification_report(ytest, preds, digits=4))
+    print("SVM accuracy: ", accuracy_score(te['label'], preds) * 100)
+    print (classification_report(te['label'], preds, digits=4))
 
     if not os.path.exists(outpath):
         os.makedirs(outpath)
     out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'.csv'
 
-    report = classification_report(ytest, preds, digits=4, output_dict= True)
+    report = classification_report(te['label'], preds, digits=4, output_dict= True)
     print (report)
     df = pd.DataFrame(report).transpose()
 
