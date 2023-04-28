@@ -39,7 +39,7 @@ pg = pizzagate
 
 -e, dataset to do the evaluation
 
--f, feature set, either 'word', 'char', 'pos', 'dep', or 'wp' (word&pos, which is content word bleaching) this is for classy.py
+-f, feature set, either 'word', 'char', 'pos', 'dep', 'tp' (topic word bleaching) or 'wp' (word&pos, which is content word bleaching) this is for classy.py
 
 -r, n-gram range for features, e.g. 1,3, this is for classy.py
 
@@ -64,6 +64,8 @@ pg = pizzagate
 !!! USE python3 in the cl server
 
 *python3 classify.py -d bf -e fe -m merge -f word -r 1,3 -o ./result_svm_mix/*
+
+*python3 classify.py -d bf -e bf -m one -f tp -r 1,3 -o ./result_wp/*
 
 #### Feature Selction (on CL server):
 
