@@ -109,6 +109,14 @@ def process_args(script_name):
                     eval = eval+'.pos' 
                     dataset = dataset+'.pos' 
                     feat = 'word'
+                elif val == 'tp':
+                    eval = eval+'.tp' 
+                    dataset = dataset+'.tp' 
+                    feat = 'word'
+                elif val == 'wp':
+                    eval = eval+'.wp' 
+                    dataset = dataset+'.wp' 
+                    feat = 'word'                    
                 else:  
                     feat = val
             elif arg == "-k":
@@ -141,7 +149,7 @@ def process_args(script_name):
 
 
 
-def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval_seed, outpath, min=10, bi=False):
+def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval_seed, outpath, min=1, bi=False):
 
     
    # set up vectorizing object
@@ -227,15 +235,13 @@ def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval
     # predict with our svm model
     preds = model.predict(test_new)
 
-    # check how our model did
     # dataset eval
 
 
-    out_res = outpath+'res_tr_'+seed+'_te_'+eval_seed+'.csv'
-
+    out_res = outpath+'res_tr_'+seed+'_te_'+eval_seed+str(kfeature)+'.csv'
 
     report = classification_report(test['label'], preds, digits=4, output_dict= True)
-    print (report)
+
     df = pd.DataFrame(report).transpose()
 
     df.to_csv(out_res)

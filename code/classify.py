@@ -40,25 +40,8 @@ def main():
     print (seed)
     print (seed_eval)
 
-    # check to make sure the LOCO partition exists
-    # if not os.path.exists('../data/LOCO_partition.json'):
-    #     partition_dataset()
-
-    # open the partitioned data
-    # with open('../data/LOCO_partition.json') as f:
-    #     data = json.load(f)
-
-    # get the data (i realize this is inefficient)
-    # ct = split_data(data)
-    # ct = ct[data_index]
-
-    # split the data into x and y vectors
-    # xdata, ydata = x_y_split(ct)
-
-    # # split the data into train and test
-    # xtrain, xtest, ytrain, ytest = train_test_split(xdata, ydata,
-    #                                                 train_size = train_perc,
-    #                                                 test_size = test_perc)
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)    
     
     if mode == 'merge':
         # test on seed, train on a list without seed
@@ -67,7 +50,7 @@ def main():
         tr, te, val  = read_data(seed,seed_eval)
 
     # vectorize the data
-    vectorizer = CountVectorizer(analyzer = feat, ngram_range = (n1, n2), min_df = 10, binary=False,token_pattern=r'\b\w+\b')
+    vectorizer = CountVectorizer(analyzer = feat, ngram_range = (n1, n2), min_df = 1, binary=False,token_pattern=r'\b\w+\b')
 
     # convert data to vectorized form
     vec_xtrain = vectorizer.fit_transform(tr['text'])
@@ -100,6 +83,12 @@ def main():
     # print out our model parameters
     print(model.best_params_)
 
+    with open(outpath+'res_params.csv','a') as out_param:
+        out_param.write(seed+'\n')
+        out_param.write(seed_eval+'\n')
+        out_param.write(str(model.best_params_)+'\n\n')
+
+
     # predict with our svm model
     preds = model.predict(vec_xtest)
 
@@ -107,12 +96,10 @@ def main():
     print("SVM accuracy: ", accuracy_score(te['label'], preds) * 100)
     print (classification_report(te['label'], preds, digits=4))
 
-    if not os.path.exists(outpath):
-        os.makedirs(outpath)
+
     out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'.csv'
 
     report = classification_report(te['label'], preds, digits=4, output_dict= True)
-    print (report)
     df = pd.DataFrame(report).transpose()
 
     df.to_csv(out_res)
