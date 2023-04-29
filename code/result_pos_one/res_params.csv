@@ -1,0 +1,100 @@
+big.foot.pos
+big.foot.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+big.foot.pos
+flat.earth.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+big.foot.pos
+climate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+big.foot.pos
+vaccine.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+big.foot.pos
+pizzagate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+flat.earth.pos
+big.foot.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.pos
+flat.earth.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.pos
+climate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.pos
+vaccine.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.pos
+pizzagate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.pos
+big.foot.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.pos
+flat.earth.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.pos
+climate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.pos
+vaccine.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.pos
+pizzagate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.pos
+big.foot.pos
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+vaccine.pos
+flat.earth.pos
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+vaccine.pos
+climate.pos
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+vaccine.pos
+vaccine.pos
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+vaccine.pos
+pizzagate.pos
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.pos
+big.foot.pos
+{'C': 1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+pizzagate.pos
+flat.earth.pos
+{'C': 1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+pizzagate.pos
+climate.pos
+{'C': 1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+pizzagate.pos
+vaccine.pos
+{'C': 1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+pizzagate.pos
+pizzagate.pos
+{'C': 1, 'loss': 'squared_hinge', 'random_state': 1291}
+

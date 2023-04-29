@@ -1,0 +1,20 @@
+fe_cc_va_pg.pos
+big.foot.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg.pos
+flat.earth.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg.pos
+climate.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg.pos
+vaccine.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+bf_fe_cc_va.pos
+pizzagate.pos
+{'C': 0.1, 'loss': 'hinge', 'random_state': 42}
+
