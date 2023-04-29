@@ -1,0 +1,20 @@
+fe_cc_va_pg.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg.wp
+flat.earth.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_fe_va_pg.wp
+climate.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_fe_cc_pg.wp
+vaccine.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+bf_fe_cc_va.wp
+pizzagate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+

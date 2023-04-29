@@ -1,0 +1,100 @@
+big.foot.tp
+big.foot.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.tp
+flat.earth.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.tp
+climate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.tp
+vaccine.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.tp
+pizzagate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.tp
+big.foot.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.tp
+flat.earth.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.tp
+climate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.tp
+vaccine.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.tp
+pizzagate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.tp
+big.foot.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.tp
+flat.earth.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.tp
+climate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.tp
+vaccine.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+climate.tp
+pizzagate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.tp
+big.foot.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.tp
+flat.earth.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.tp
+climate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.tp
+vaccine.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.tp
+pizzagate.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+pizzagate.tp
+big.foot.tp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.tp
+flat.earth.tp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.tp
+climate.tp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.tp
+vaccine.tp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.tp
+pizzagate.tp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+

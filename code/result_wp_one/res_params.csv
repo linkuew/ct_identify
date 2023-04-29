@@ -1,0 +1,100 @@
+big.foot.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.wp
+flat.earth.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.wp
+climate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.wp
+vaccine.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.wp
+pizzagate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+flat.earth.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+flat.earth.wp
+flat.earth.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+flat.earth.wp
+climate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+flat.earth.wp
+vaccine.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+flat.earth.wp
+pizzagate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+climate.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+climate.wp
+flat.earth.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+climate.wp
+climate.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+climate.wp
+vaccine.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+climate.wp
+pizzagate.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+vaccine.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.wp
+flat.earth.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.wp
+climate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.wp
+vaccine.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+vaccine.wp
+pizzagate.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+pizzagate.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.wp
+flat.earth.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.wp
+climate.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.wp
+vaccine.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+pizzagate.wp
+pizzagate.wp
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
