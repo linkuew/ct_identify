@@ -5,27 +5,32 @@ train clf for CT texts
 '''
 
 import os
+import json
 import sys
 import numpy as np
 from datasets import Dataset
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
-from transformers import BartForSequenceClassification, BartTokenizer
+from transformers import AutoTokenizer
+from transformers import AutoModelForSequenceClassification
 from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
+from transformers import BartForSequenceClassification, BartTokenizer
 from datasets import load_metric
-from torch.utils.data import Dataset, DataLoader
 from library import *
+import time
 import torch
-from transformers import AdamW
-
 
 
 # load model
 model_name = "facebook/bart-base"
 tokenizer = BartTokenizer.from_pretrained(model_name)
 model = BartForSequenceClassification.from_pretrained(model_name, num_labels=2)
-    
+
+#model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
+#
+#tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
 
 ############################################################################
 #
@@ -34,43 +39,56 @@ model = BartForSequenceClassification.from_pretrained(model_name, num_labels=2)
 #
 # It is basically same with the svm ones, but you probably need to run it on Carbonate GPU nodes
 # python bert_clf.py -d bf -e fe -m one -p 1 -l 1e-5 -b 5
-# 
+#
 # I will add the batch script in src soon
-# 
+#
 # After setting up the environment in Carbonate
 # Run: sbatch sbatch_bert.bash
 ############################################################################
 
 # Prepare the text inputs for the model
-class ClassificationDataset(Dataset):
-    def __init__(self, encodings, labels):
-        self.encodings = encodings
-        self.labels = labels
+def preprocess_function(dataset):
+    tokenized_text = tokenizer(dataset['text'])
 
-    def __getitem__(self, idx):
-        item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
-        item["labels"] = torch.tensor(self.labels[idx])
-        return item
+    if len(tokenized_text['input_ids']) <= 512:
+        tokenized_text = tokenizer(dataset['text'], padding="max_length", max_length=513)
+        words = []
+        for entry in tokenized_text['input_ids']:
+            if entry == 2:
+                pass
+            else:
+                words.append(entry)
 
-    def __len__(self):
-        return len(self.labels)
+        totalwords = words + tokenized_text['input_ids'][-512:]
 
-def evaluate(model, test_loader):
-    model.eval()
-    predictions = []
-    true_labels = []
+        totalattention = tokenized_text['attention_mask'][-512:] \
+                        + tokenized_text['attention_mask'][-512:]
 
-    with torch.no_grad():
-        for batch in test_loader:
-            batch = {k: v.to(device) for k, v in batch.items()}
-            outputs = model(**batch)
-            logits = outputs.logits
-            _, pred = torch.max(logits, dim=1)
-            predictions.extend(pred.tolist())
-            true_labels.extend(batch["labels"].tolist())
+    else:
+        first512_words = tokenized_text['input_ids'][:512]
+        last512_words = tokenized_text['input_ids'][-512:]
+        totalwords = first512_words + last512_words
 
-    return predictions, true_labels
+        first512_attention = tokenized_text['attention_mask'][:512]
+        last512_attention = tokenized_text['attention_mask'][-512:]
+        totalattention = first512_attention + last512_attention
 
+    tokenized_text['input_ids'] = torch.LongTensor([totalwords]).squeeze(0)
+    tokenized_text['attention_mask'] = torch.LongTensor([totalattention]).squeeze(0)
+
+#    tokenized_text['input_ids'] = tokenized_text['input_ids'].squeeze(0)
+#    tokenized_text['attention_mask'] = tokenized_text['attention_mask'].squeeze(0)
+
+    return tokenized_text
+
+def compute_metrics(eval_pred):
+    load_f1 = load_metric("f1")
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+
+    f1 = load_f1.compute(predictions=predictions, references=labels, average = 'macro')["f1"]
+
+    return {"f1": f1}
 
 def main():
 
@@ -85,67 +103,97 @@ def main():
     print (seed_eval)
 
 
-    if mode == 'merge':
-        # test on seed, train on a list without seed
-        xtrain, ytrain, xtest,  ytest = read_data_merge(seed,seed_eval)
+    if mode == 'merge': # test on seed, train on a list without seed
+        tr, te, val = read_data_merge(seed,seed_eval)
     else:
-        xtrain, ytrain, xtest, ytest  = read_data(seed,seed_eval)
+        tr, te, val  = read_data(seed,seed_eval)
 
-    
-    train = pd.concat([xtrain, ytrain], axis=1)
-    test = pd.concat([xtest, ytest], axis=1)
+    tr['label'] = tr['label'].replace({'mainstream':0, 'conspiracy':1})
+    te['label'] = te['label'].replace({'mainstream':0, 'conspiracy':1})
+    val['label'] = val['label'].replace({'mainstream':0, 'conspiracy':1})
 
+    tr_dataset = Dataset.from_pandas(tr)
+    val_dataset = Dataset.from_pandas(val)
+    te_dataset = Dataset.from_pandas(te)
 
-    train['label'] = train['label'].replace({'mainstream':0, 'conspiracy':1})
-    test['label'] = test['label'].replace({'mainstream':0, 'conspiracy':1})
+    train_tokenized = tr_dataset.map(preprocess_function)
+    val_tokenized = val_dataset.map(preprocess_function)
+    test_tokenized = te_dataset.map(preprocess_function)
 
-    train_encodings = tokenizer(train['text'].tolist(), truncation=True, padding=True)
+#    print(train_tokenized)
+#    print(val_tokenized)
+#    print(test_tokenized)
+#    print()
 
-    train_dataset = ClassificationDataset(train_encodings, tr['label'].tolist())
-    train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True)
+    data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
+    training_args = TrainingArguments(
+        output_dir='./',
+        learning_rate=lr,
+        per_device_train_batch_size=batch,
+        per_device_eval_batch_size=1,
+        num_train_epochs=ep,
+        weight_decay=0.01,
+        save_strategy="epoch",
+        label_names=["mainstream", "conspiracy"],
+    )
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_tokenized,
+        eval_dataset=val_tokenized,
+        #tokenizer=tokenizer,
+        compute_metrics=compute_metrics,
+        data_collator=data_collator,
+    )
 
+    trainer.train()
+    trainer.evaluate()
 
-    optimizer = AdamW(model.parameters(), lr=2e-5)
+    # Eval on test set
+    predictions = trainer.predict(test_tokenized)
 
-    for epoch in range(1):
-        model.train()
-        for batch in train_loader:
-            batch = {k: v.to(device) for k, v in batch.items()}
-            outputs = model(**batch)
-            loss = outputs.loss
-            loss.backward()
-            optimizer.step()
-            optimizer.zero_grad()
+#    print(len(predictions))
+#    print(type(predictions.predictions))
+#
+#
+#    print(type(predictions.predictions[0]))
+#    print(len(predictions.predictions[0]))
+#    print(predictions.predictions[0])
+#    print()
+#    print(type(predictions.predictions[1]))
+#    print(len(predictions.predictions[1]))
+#    print(predictions.predictions[1])
+#
+#    print()
+#    print(type(predictions.predictions[2]))
+#    print(len(predictions.predictions[2]))
+#    print(predictions.predictions[2])
 
-    
-    test_encodings = tokenizer(test['text'].tolist(), truncation=True, padding=True)
+    preds = np.argmax(predictions.predictions[1], axis=-1)
 
-    test_dataset = ClassificationDataset(test_encodings, test['label'].tolist())
-    test_loader = DataLoader(test_dataset, batch_size=2, shuffle=False)
+    # dataset eval
+    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'_epochs_'+str(ep)+'_time_'+str(time.time())+'.csv'
 
-    predictions, true_labels = evaluate(model, test_loader)
-    
-
-
-    if not os.path.exists(outpath):
-        os.makedirs(outpath)
-    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'.csv'
-
-
-    transform_labels = ['mainstream' if x == 0 else x for x in predictions]
+    transform_labels = ['mainstream' if x == 0 else x for x in preds]
     transform_labels = ['conspiracy' if x == 1 else x for x in transform_labels]
 
-    report = classification_report(true_labels, transform_labels, digits=4, output_dict= True)
+    te['label'] = te['label'].replace({0:'mainstream', 1:'conspiracy'})
+
+    print(transform_labels)
+    print()
+    print(te['label'])
+
+    report = classification_report(te['label'], transform_labels, digits=4, output_dict= True)
     print (report)
+
     df = pd.DataFrame(report).transpose()
 
     df.to_csv(out_res)
 
-
 if __name__ == "__main__":
-    torch.cuda.empty_cache()
     main()
