@@ -83,7 +83,7 @@ def process_args(script_name):
 
         for arg, val in optlist:
             if arg == "-h":
-                usage()
+                usage(script_name)
             elif arg == "-d":
                 dataset = glob_dict.get(val)
             elif arg == "-e":
@@ -137,7 +137,7 @@ def process_args(script_name):
 
     except Exception as e:
         print(e)
-        usage()
+        usage(script_name)
         exit(-1)
 
     if script_name[0] == 'c':
