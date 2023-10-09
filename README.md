@@ -65,7 +65,11 @@ pg = pizzagate
 
 *python3 classify.py -d bf -e fe -m merge -f word -r 1,3 -o ./result_svm_mix/*
 
-*python3 classify.py -d bf -e bf -m one -f tp -r 1,3 -o ./result_wp/*
+*python3 classify.py -d bf -e bf -m one -f tp10 -r 1,3 -o ./result_tp10/*
+
+#### Generate topic word bleaching data (on CL server):
+
+*python3 topic_word_bleach.py --n_topics 10*
 
 #### Feature Selction (on CL server):
 
