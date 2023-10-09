@@ -101,24 +101,12 @@ def process_args(script_name):
                 low = int(tmp[0])
                 upp = int(tmp[1])
             elif arg == "-f":
-                if val == 'dep':
-                    eval = eval+'.dep' 
-                    dataset = dataset+'.dep'
-                    feat = 'word'
-                elif val == 'pos':
-                    eval = eval+'.pos' 
-                    dataset = dataset+'.pos' 
-                    feat = 'word'
-                elif val == 'tp':
-                    eval = eval+'.tp' 
-                    dataset = dataset+'.tp' 
-                    feat = 'word'
-                elif val == 'wp':
-                    eval = eval+'.wp' 
-                    dataset = dataset+'.wp' 
-                    feat = 'word'                    
+                if val == 'char':
+                    feat = val                  
                 else:  
-                    feat = val
+                    eval = eval+'.'+val 
+                    dataset = dataset+'.'+val 
+                    feat = 'word'
             elif arg == "-k":
                 num_feat = int(val)
             elif arg == "-s":
