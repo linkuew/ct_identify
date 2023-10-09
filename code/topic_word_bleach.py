@@ -74,8 +74,12 @@ def bleach_topic_words(topic_words, df):
     for v in df['word_pos'].values:
         new_doc = []
         for item in v.split():
-            word, pos = item.split('_')
-            new_doc.append(pos if word.lower() in topic_words else word)
+            try:
+                word, pos = item.split('_')
+                new_doc.append(pos if word.lower() in topic_words else word)
+            except:
+                new_doc.append(item)
+
         bleach_lines.append(' '.join(new_doc))
     
     df['bleach'] = bleach_lines
