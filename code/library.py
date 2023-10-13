@@ -19,13 +19,13 @@ glob_dict = {'bf' : 'big.foot', 'fe' : 'flat.earth', 'cc' : 'climate', 'va' : 'v
 glob_dict_rev = {value:key for key, value in glob_dict.items()}
 ct_lsts = list(glob_dict.keys())
 #
-# Read data from conspiracy seed 
+# Read data from conspiracy seed
 ##
 def read_data(seed,eval):
     tr = pd.read_csv('../data/train_'+seed+'.csv')
     val = pd.read_csv('../data/val_'+seed+'.csv')
     te = pd.read_csv('../data/test_'+eval+'.csv')
-        
+
     return tr, te, val
 
 def read_data_merge(seed,eval):
@@ -35,13 +35,12 @@ def read_data_merge(seed,eval):
 
     return tr, te, val
 
-    
+
 ##
 # Prints out the usage statements
 ##
 def usage(script_name):
-    print("Usage: python " + script_name + " -d [bf|fe|cl|va|pg] -e [bf|fe|cl|va|pg] -m [merge] -f [char|word] -r i,j",
-            end='')
+    print("Usage: python " + script_name + " -d [bf|fe|cl|va|pg] -e [bf|fe|cl|va|pg] -m [merge] -f [char|word] -r i,j", end="")
     if script_name[0] == 'f':
         print('-k [num_features]')
         print('-s [selection_function]')
@@ -74,12 +73,12 @@ def process_args(script_name):
         # classification
         if script_name[0] == 'c':
             optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:t:m:f:r:y:v:o:")
-        # feautre selectio 
+        # feautre selectio
         elif script_name[0] == 'f':
             optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:t:m:f:r:k:s:y:o:")
         # bert
         elif script_name[0] == 'b':
-            optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:p:l:b:o:")        
+                optlist, _ = getopt.getopt(sys.argv[1:], "hd:e:m:p:l:b:o:f:")
 
         for arg, val in optlist:
             if arg == "-h":
@@ -87,26 +86,37 @@ def process_args(script_name):
             elif arg == "-d":
                 dataset = glob_dict.get(val)
             elif arg == "-e":
-                eval = glob_dict.get(val)                
+                eval = glob_dict.get(val)
             # elif arg == "-t":
             #     pred = val
             elif arg == "-m":
                 mode = val
                 if mode == "merge":
-                    eval = dataset 
-                    ct_lsts.remove(glob_dict_rev[dataset])
-                    dataset = '_'.join(ct_lsts)               
+                    ct_lsts.remove(glob_dict_rev[eval])
+                    dataset = '_'.join(ct_lsts)
             elif arg == "-r":
                 tmp = val.split(",")
                 low = int(tmp[0])
                 upp = int(tmp[1])
             elif arg == "-f":
-                if val == 'char':
-                    feat = val                  
-                else:  
-                    eval = eval+'.'+val 
-                    dataset = dataset+'.'+val 
+                if val == 'dep':
+                    eval = eval+'.dep'
+                    dataset = dataset+'.dep'
                     feat = 'word'
+                elif val == 'pos':
+                    eval = eval+'.pos'
+                    dataset = dataset+'.pos'
+                    feat = 'word'
+                elif val == 'tp':
+                    eval = eval+'.tp'
+                    dataset = dataset+'.tp'
+                    feat = 'word'
+                elif val == 'wp':
+                    eval = eval+'.wp'
+                    dataset = dataset+'.wp'
+                    feat = 'word'
+                else:
+                    feat = val
             elif arg == "-k":
                 num_feat = int(val)
             elif arg == "-s":
@@ -120,7 +130,7 @@ def process_args(script_name):
             elif arg == "-l":
                 l = float(val)
             elif arg == "-b":
-                batch = int(val)           
+                batch = int(val)
 
 
     except Exception as e:
@@ -139,7 +149,7 @@ def process_args(script_name):
 
 def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval_seed, outpath, min=1, bi=False):
 
-    
+
    # set up vectorizing object
     vectorizer_word = CountVectorizer(analyzer = feat,
             ngram_range=(n1, n2),
@@ -163,7 +173,7 @@ def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval
     train_new = bestfeatures.fit_transform(train_bool_matrix, train['label'])
     test_new = bestfeatures.transform(test_bool_matrix)
 
-    
+
 
     fit = bestfeatures.fit(train_bool_matrix,train['label'])
     dfscores = pd.DataFrame(fit.scores_)
@@ -187,7 +197,7 @@ def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval
             + str(feat) + '_' \
             + str(n1) + '-' + str(n2) + '_' \
             + 'tr_' + seed
-                
+
     rank.to_csv(filename+'.txt')
 
 
@@ -210,7 +220,7 @@ def feature_selection(train, test, val, kfeature, n1, n2, func, feat, seed, eval
                       'C': [0.01,0.1,1]}
 
     model = GridSearchCV(svc, param_grid, n_jobs=16, verbose=1, cv=pds)
-    
+
 
 
 

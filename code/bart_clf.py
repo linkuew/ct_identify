@@ -20,17 +20,13 @@ from datasets import load_metric
 from library import *
 import time
 import torch
-
+from transformers import AdamW
+import time
 
 # load model
 model_name = "facebook/bart-base"
 tokenizer = BartTokenizer.from_pretrained(model_name)
 model = BartForSequenceClassification.from_pretrained(model_name, num_labels=2)
-
-#model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
-#
-#tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-
 
 ############################################################################
 #
@@ -47,23 +43,15 @@ model = BartForSequenceClassification.from_pretrained(model_name, num_labels=2)
 ############################################################################
 
 # Prepare the text inputs for the model
-def preprocess_function(dataset):
-    tokenized_text = tokenizer(dataset['text'])
+def preprocess_function(text):
+    tokenized_text = tokenizer(text)
 
     if len(tokenized_text['input_ids']) <= 512:
-        tokenized_text = tokenizer(dataset['text'], padding="max_length", max_length=513)
-        words = []
-        for entry in tokenized_text['input_ids']:
-            if entry == 2:
-                pass
-            else:
-                words.append(entry)
-
-        totalwords = words + tokenized_text['input_ids'][-512:]
-
-        totalattention = tokenized_text['attention_mask'][-512:] \
-                        + tokenized_text['attention_mask'][-512:]
-
+        tokenized_text = tokenizer(text, return_tensors="pt", padding="max_length", max_length=1024)
+     #   print("less than 512  = ", end=" ")
+     #   print(tokenized_text['input_ids'].size())
+     #   print(type(tokenized_text['input_ids']))
+     #   print(tokenized_text)
     else:
         first512_words = tokenized_text['input_ids'][:512]
         last512_words = tokenized_text['input_ids'][-512:]
@@ -72,6 +60,26 @@ def preprocess_function(dataset):
         first512_attention = tokenized_text['attention_mask'][:512]
         last512_attention = tokenized_text['attention_mask'][-512:]
         totalattention = first512_attention + last512_attention
+
+        #tokenized_text['input_ids'] = totalwords
+        #tokenized_text['attention_mask'] = totalattention
+
+        tokenized_text['input_ids'] = torch.LongTensor([totalwords])
+        tokenized_text['attention_mask'] = torch.LongTensor([totalattention])
+        #print(type(tokenized_text['input_ids']))
+
+        #print("after combining =", end=" ")
+        #print(tokenized_text['input_ids'].size())
+    tokenized_text['input_ids'] = tokenized_text['input_ids'].squeeze(0)
+    tokenized_text['attention_mask'] = tokenized_text['attention_mask'].squeeze(0)
+
+    return tokenized_text
+
+
+class ClassificationDataset(Dataset):
+    def __init__(self, encodings, labels):
+        self.encodings = encodings
+        self.labels = labels
 
     tokenized_text['input_ids'] = torch.LongTensor([totalwords]).squeeze(0)
     tokenized_text['attention_mask'] = torch.LongTensor([totalattention]).squeeze(0)
@@ -102,87 +110,49 @@ def main():
     print (seed)
     print (seed_eval)
 
-
     if mode == 'merge': # test on seed, train on a list without seed
         tr, te, val = read_data_merge(seed,seed_eval)
     else:
         tr, te, val  = read_data(seed,seed_eval)
 
+    #train = pd.concat([xtrain, ytrain], axis=1)
+    #test = pd.concat([xtest, ytest], axis=1)
+
     tr['label'] = tr['label'].replace({'mainstream':0, 'conspiracy':1})
     te['label'] = te['label'].replace({'mainstream':0, 'conspiracy':1})
     val['label'] = val['label'].replace({'mainstream':0, 'conspiracy':1})
 
-    tr_dataset = Dataset.from_pandas(tr)
-    val_dataset = Dataset.from_pandas(val)
-    te_dataset = Dataset.from_pandas(te)
+    tokenized_train = tr['text'].map(preprocess_function)
+    tokenized_val = val['text'].map(preprocess_function)
+    tokenized_test = te['text'].map(preprocess_function)
 
-    train_tokenized = tr_dataset.map(preprocess_function)
-    val_tokenized = val_dataset.map(preprocess_function)
-    test_tokenized = te_dataset.map(preprocess_function)
+    train_dataset = ClassificationDataset(tokenized_train, tr['label'].tolist())
+    train_loader = DataLoader(tokenized_train, batch_size=batch, shuffle=True)
 
-#    print(train_tokenized)
-#    print(val_tokenized)
-#    print(test_tokenized)
-#    print()
-
-    data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
-
-    training_args = TrainingArguments(
-        output_dir='./',
-        learning_rate=lr,
-        per_device_train_batch_size=batch,
-        per_device_eval_batch_size=1,
-        num_train_epochs=ep,
-        weight_decay=0.01,
-        save_strategy="epoch",
-        label_names=["mainstream", "conspiracy"],
-    )
+    test_dataset = ClassificationDataset(tokenized_test, te['label'].tolist())
+    test_loader = DataLoader(tokenized_test, batch_size=batch, shuffle=False)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
-    trainer = Trainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_tokenized,
-        eval_dataset=val_tokenized,
-        #tokenizer=tokenizer,
-        compute_metrics=compute_metrics,
-        data_collator=data_collator,
-    )
+    optimizer = AdamW(model.parameters(), lr=lr)
 
-    trainer.train()
-    trainer.evaluate()
+    for epoch in range(1):
+        model.train()
+        for batch in train_loader:
+            print("going through a batch")
+            batch = {k: v.to(device) for k, v in batch.items()}
+            outputs = model(**batch)
+            loss = outputs.loss
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
 
-    # Eval on test set
-    predictions = trainer.predict(test_tokenized)
+    predictions, true_labels = evaluate(model, test_loader)
 
-#    print(len(predictions))
-#    print(type(predictions.predictions))
-#
-#
-#    print(type(predictions.predictions[0]))
-#    print(len(predictions.predictions[0]))
-#    print(predictions.predictions[0])
-#    print()
-#    print(type(predictions.predictions[1]))
-#    print(len(predictions.predictions[1]))
-#    print(predictions.predictions[1])
-#
-#    print()
-#    print(type(predictions.predictions[2]))
-#    print(len(predictions.predictions[2]))
-#    print(predictions.predictions[2])
-
-    preds = np.argmax(predictions.predictions[1], axis=-1)
-
-    # dataset eval
-    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'_epochs_'+str(ep)+'_time_'+str(time.time())+'.csv'
-
-    transform_labels = ['mainstream' if x == 0 else x for x in preds]
-    transform_labels = ['conspiracy' if x == 1 else x for x in transform_labels]
-
-    te['label'] = te['label'].replace({0:'mainstream', 1:'conspiracy'})
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
+    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'_time_'+str(time.time())+'.csv'
 
     print(transform_labels)
     print()
