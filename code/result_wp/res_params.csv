@@ -1,0 +1,12 @@
+big.foot.pos
+big.foot.pos
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 42}
+
+big.foot.wp
+big.foot.wp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+big.foot.tp
+big.foot.tp
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
