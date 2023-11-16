@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#SBATCH -A general
+#SBATCH -A r00018
 #SBATCH -p gpu
-#SBATCH --mail-user=mattfort@iu.edu
+#SBATCH --mail-user=eligabel@iu.edu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --gpus-per-node=1
 #SBATCH --time=0-05:00:00
 #SBATCH --mem=50gb
-#SBATCH --mail-type=FAIL,BEGIN,END
+#SBATCH --mail-type=ALL
 #SBATCH --job-name=ct_%j
 #SBATCH -o ./../../out/base_out_%j.out
 #SBATCH -e ./../../err/base_error_%j.err
