@@ -74,7 +74,7 @@ mode="merge"
 #for tr in "${cts{@}}"; do
         #-d $tr \
 for te in "${cts[@]}"; do
-        python bart_clf.py \
+        python bert_clf.py \
                 -e $te \
                 -m $mode \
                 -p $epochs \
