@@ -1,0 +1,300 @@
+fe_cc_va_pg
+big.foot
+{'C': 0.1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+flat.earth
+{'C': 0.1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+climate
+{'C': 0.1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+vaccine
+{'C': 0.1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+pizzagate
+{'C': 0.1, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+big.foot
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+climate
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+vaccine
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+fe_cc_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_cc_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_va_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_pg
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+big.foot
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+flat.earth
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+climate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+vaccine
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+
+bf_fe_cc_va
+pizzagate
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+

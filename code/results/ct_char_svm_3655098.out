@@ -1,0 +1,480 @@
+big.foot
+big.foot
+(1064, 2532013)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  87.21804511278195
+              precision    recall  f1-score   support
+
+  conspiracy     0.9310    0.6429    0.7606        42
+  mainstream     0.8558    0.9780    0.9128        91
+
+    accuracy                         0.8722       133
+   macro avg     0.8934    0.8104    0.8367       133
+weighted avg     0.8795    0.8722    0.8647       133
+
+{'conspiracy': {'precision': 0.9310344827586207, 'recall': 0.6428571428571429, 'f1-score': 0.7605633802816901, 'support': 42}, 'mainstream': {'precision': 0.8557692307692307, 'recall': 0.978021978021978, 'f1-score': 0.9128205128205128, 'support': 91}, 'accuracy': 0.8721804511278195, 'macro avg': {'precision': 0.8934018567639257, 'recall': 0.8104395604395604, 'f1-score': 0.8366919465511015, 'support': 133}, 'weighted avg': {'precision': 0.8795372050816697, 'recall': 0.8721804511278195, 'f1-score': 0.8647393130714108, 'support': 133}}
+big.foot
+flat.earth
+(1064, 2532013)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  76.69172932330827
+              precision    recall  f1-score   support
+
+  conspiracy     0.5435    0.7143    0.6173        35
+  mainstream     0.8851    0.7857    0.8324        98
+
+    accuracy                         0.7669       133
+   macro avg     0.7143    0.7500    0.7249       133
+weighted avg     0.7952    0.7669    0.7758       133
+
+{'conspiracy': {'precision': 0.5434782608695652, 'recall': 0.7142857142857143, 'f1-score': 0.617283950617284, 'support': 35}, 'mainstream': {'precision': 0.8850574712643678, 'recall': 0.7857142857142857, 'f1-score': 0.8324324324324324, 'support': 98}, 'accuracy': 0.7669172932330827, 'macro avg': {'precision': 0.7142678660669666, 'recall': 0.75, 'f1-score': 0.7248581915248582, 'support': 133}, 'weighted avg': {'precision': 0.7951682053709987, 'recall': 0.7669172932330827, 'f1-score': 0.7758144109021302, 'support': 133}}
+big.foot
+climate
+(1064, 2532013)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  75.18796992481202
+              precision    recall  f1-score   support
+
+  conspiracy     0.4783    0.7097    0.5714        31
+  mainstream     0.8966    0.7647    0.8254       102
+
+    accuracy                         0.7519       133
+   macro avg     0.6874    0.7372    0.6984       133
+weighted avg     0.7991    0.7519    0.7662       133
+
+{'conspiracy': {'precision': 0.4782608695652174, 'recall': 0.7096774193548387, 'f1-score': 0.5714285714285714, 'support': 31}, 'mainstream': {'precision': 0.896551724137931, 'recall': 0.7647058823529411, 'f1-score': 0.8253968253968255, 'support': 102}, 'accuracy': 0.7518796992481203, 'macro avg': {'precision': 0.6874062968515742, 'recall': 0.7371916508538899, 'f1-score': 0.6984126984126984, 'support': 133}, 'weighted avg': {'precision': 0.799055359538276, 'recall': 0.7518796992481203, 'f1-score': 0.7662012173290369, 'support': 133}}
+big.foot
+vaccine
+(1064, 2532013)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  79.69924812030075
+              precision    recall  f1-score   support
+
+  conspiracy     0.5750    0.6970    0.6301        33
+  mainstream     0.8925    0.8300    0.8601       100
+
+    accuracy                         0.7970       133
+   macro avg     0.7337    0.7635    0.7451       133
+weighted avg     0.8137    0.7970    0.8030       133
+
+{'conspiracy': {'precision': 0.575, 'recall': 0.696969696969697, 'f1-score': 0.6301369863013698, 'support': 33}, 'mainstream': {'precision': 0.8924731182795699, 'recall': 0.83, 'f1-score': 0.8601036269430051, 'support': 100}, 'accuracy': 0.7969924812030075, 'macro avg': {'precision': 0.7337365591397849, 'recall': 0.7634848484848484, 'f1-score': 0.7451203066221874, 'support': 133}, 'weighted avg': {'precision': 0.813701592691406, 'recall': 0.7969924812030075, 'f1-score': 0.8030442349041031, 'support': 133}}
+big.foot
+pizzagate
+(1064, 2532013)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  64.66165413533834
+              precision    recall  f1-score   support
+
+  conspiracy     0.4286    0.9167    0.5841        36
+  mainstream     0.9464    0.5464    0.6928        97
+
+    accuracy                         0.6466       133
+   macro avg     0.6875    0.7315    0.6384       133
+weighted avg     0.8063    0.6466    0.6634       133
+
+{'conspiracy': {'precision': 0.42857142857142855, 'recall': 0.9166666666666666, 'f1-score': 0.5840707964601769, 'support': 36}, 'mainstream': {'precision': 0.9464285714285714, 'recall': 0.5463917525773195, 'f1-score': 0.6928104575163397, 'support': 97}, 'accuracy': 0.6466165413533834, 'macro avg': {'precision': 0.6875, 'recall': 0.7315292096219931, 'f1-score': 0.6384406269882583, 'support': 133}, 'weighted avg': {'precision': 0.8062567132116004, 'recall': 0.6466165413533834, 'f1-score': 0.6633771658018895, 'support': 133}}
+flat.earth
+big.foot
+(1064, 2447783)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  81.203007518797
+              precision    recall  f1-score   support
+
+  conspiracy     0.7742    0.5714    0.6575        42
+  mainstream     0.8235    0.9231    0.8705        91
+
+    accuracy                         0.8120       133
+   macro avg     0.7989    0.7473    0.7640       133
+weighted avg     0.8079    0.8120    0.8032       133
+
+{'conspiracy': {'precision': 0.7741935483870968, 'recall': 0.5714285714285714, 'f1-score': 0.6575342465753424, 'support': 42}, 'mainstream': {'precision': 0.8235294117647058, 'recall': 0.9230769230769231, 'f1-score': 0.8704663212435233, 'support': 91}, 'accuracy': 0.8120300751879699, 'macro avg': {'precision': 0.7988614800759013, 'recall': 0.7472527472527473, 'f1-score': 0.7640002839094329, 'support': 133}, 'weighted avg': {'precision': 0.8079496654349345, 'recall': 0.8120300751879699, 'f1-score': 0.8032246134535714, 'support': 133}}
+flat.earth
+flat.earth
+(1064, 2447783)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  89.47368421052632
+              precision    recall  f1-score   support
+
+  conspiracy     0.8889    0.6857    0.7742        35
+  mainstream     0.8962    0.9694    0.9314        98
+
+    accuracy                         0.8947       133
+   macro avg     0.8926    0.8276    0.8528       133
+weighted avg     0.8943    0.8947    0.8900       133
+
+{'conspiracy': {'precision': 0.8888888888888888, 'recall': 0.6857142857142857, 'f1-score': 0.7741935483870968, 'support': 35}, 'mainstream': {'precision': 0.8962264150943396, 'recall': 0.9693877551020408, 'f1-score': 0.9313725490196079, 'support': 98}, 'accuracy': 0.8947368421052632, 'macro avg': {'precision': 0.8925576519916143, 'recall': 0.8275510204081633, 'f1-score': 0.8527830487033523, 'support': 133}, 'weighted avg': {'precision': 0.8942954871455369, 'recall': 0.8947368421052632, 'f1-score': 0.8900096541163155, 'support': 133}}
+flat.earth
+climate
+(1064, 2447783)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  82.70676691729322
+              precision    recall  f1-score   support
+
+  conspiracy     0.6667    0.5161    0.5818        31
+  mainstream     0.8624    0.9216    0.8910       102
+
+    accuracy                         0.8271       133
+   macro avg     0.7645    0.7188    0.7364       133
+weighted avg     0.8168    0.8271    0.8189       133
+
+{'conspiracy': {'precision': 0.6666666666666666, 'recall': 0.5161290322580645, 'f1-score': 0.5818181818181819, 'support': 31}, 'mainstream': {'precision': 0.8623853211009175, 'recall': 0.9215686274509803, 'f1-score': 0.8909952606635071, 'support': 102}, 'accuracy': 0.8270676691729323, 'macro avg': {'precision': 0.764525993883792, 'recall': 0.7188488298545224, 'f1-score': 0.7364067212408445, 'support': 133}, 'weighted avg': {'precision': 0.8167666873606034, 'recall': 0.8270676691729323, 'f1-score': 0.8189314302559502, 'support': 133}}
+flat.earth
+vaccine
+(1064, 2447783)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  76.69172932330827
+              precision    recall  f1-score   support
+
+  conspiracy     0.5263    0.6061    0.5634        33
+  mainstream     0.8632    0.8200    0.8410       100
+
+    accuracy                         0.7669       133
+   macro avg     0.6947    0.7130    0.7022       133
+weighted avg     0.7796    0.7669    0.7721       133
+
+{'conspiracy': {'precision': 0.5263157894736842, 'recall': 0.6060606060606061, 'f1-score': 0.5633802816901409, 'support': 33}, 'mainstream': {'precision': 0.8631578947368421, 'recall': 0.82, 'f1-score': 0.8410256410256411, 'support': 100}, 'accuracy': 0.7669172932330827, 'macro avg': {'precision': 0.6947368421052631, 'recall': 0.713030303030303, 'f1-score': 0.7022029613578911, 'support': 133}, 'weighted avg': {'precision': 0.7795805302730511, 'recall': 0.7669172932330827, 'f1-score': 0.7721361909649531, 'support': 133}}
+flat.earth
+pizzagate
+(1064, 2447783)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  84.21052631578947
+              precision    recall  f1-score   support
+
+  conspiracy     0.7027    0.7222    0.7123        36
+  mainstream     0.8958    0.8866    0.8912        97
+
+    accuracy                         0.8421       133
+   macro avg     0.7993    0.8044    0.8018       133
+weighted avg     0.8436    0.8421    0.8428       133
+
+{'conspiracy': {'precision': 0.7027027027027027, 'recall': 0.7222222222222222, 'f1-score': 0.7123287671232876, 'support': 36}, 'mainstream': {'precision': 0.8958333333333334, 'recall': 0.8865979381443299, 'f1-score': 0.8911917098445595, 'support': 97}, 'accuracy': 0.8421052631578947, 'macro avg': {'precision': 0.7992680180180181, 'recall': 0.8044100801832761, 'f1-score': 0.8017602384839235, 'support': 133}, 'weighted avg': {'precision': 0.8435573731626363, 'recall': 0.8421052631578947, 'f1-score': 0.8427776802357941, 'support': 133}}
+climate
+big.foot
+(1064, 2049819)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  75.93984962406014
+              precision    recall  f1-score   support
+
+  conspiracy     0.5806    0.8571    0.6923        42
+  mainstream     0.9155    0.7143    0.8025        91
+
+    accuracy                         0.7594       133
+   macro avg     0.7481    0.7857    0.7474       133
+weighted avg     0.8098    0.7594    0.7677       133
+
+{'conspiracy': {'precision': 0.5806451612903226, 'recall': 0.8571428571428571, 'f1-score': 0.6923076923076923, 'support': 42}, 'mainstream': {'precision': 0.9154929577464789, 'recall': 0.7142857142857143, 'f1-score': 0.8024691358024693, 'support': 91}, 'accuracy': 0.7593984962406015, 'macro avg': {'precision': 0.7480690595184007, 'recall': 0.7857142857142857, 'f1-score': 0.7473884140550808, 'support': 133}, 'weighted avg': {'precision': 0.8097515483392717, 'recall': 0.7593984962406015, 'f1-score': 0.7676813115409608, 'support': 133}}
+climate
+flat.earth
+(1064, 2049819)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  65.41353383458647
+              precision    recall  f1-score   support
+
+  conspiracy     0.4225    0.8571    0.5660        35
+  mainstream     0.9194    0.5816    0.7125        98
+
+    accuracy                         0.6541       133
+   macro avg     0.6709    0.7194    0.6393       133
+weighted avg     0.7886    0.6541    0.6740       133
+
+{'conspiracy': {'precision': 0.4225352112676056, 'recall': 0.8571428571428571, 'f1-score': 0.5660377358490566, 'support': 35}, 'mainstream': {'precision': 0.9193548387096774, 'recall': 0.5816326530612245, 'f1-score': 0.7124999999999999, 'support': 98}, 'accuracy': 0.6541353383458647, 'macro avg': {'precision': 0.6709450249886415, 'recall': 0.7193877551020408, 'f1-score': 0.6392688679245282, 'support': 133}, 'weighted avg': {'precision': 0.7886128314880795, 'recall': 0.6541353383458647, 'f1-score': 0.6739572989076463, 'support': 133}}
+climate
+climate
+(1064, 2049819)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  88.7218045112782
+              precision    recall  f1-score   support
+
+  conspiracy     0.7667    0.7419    0.7541        31
+  mainstream     0.9223    0.9314    0.9268       102
+
+    accuracy                         0.8872       133
+   macro avg     0.8445    0.8367    0.8405       133
+weighted avg     0.8860    0.8872    0.8866       133
+
+{'conspiracy': {'precision': 0.7666666666666667, 'recall': 0.7419354838709677, 'f1-score': 0.7540983606557377, 'support': 31}, 'mainstream': {'precision': 0.9223300970873787, 'recall': 0.9313725490196079, 'f1-score': 0.9268292682926829, 'support': 102}, 'accuracy': 0.8872180451127819, 'macro avg': {'precision': 0.8444983818770226, 'recall': 0.8366540164452878, 'f1-score': 0.8404638144742103, 'support': 133}, 'weighted avg': {'precision': 0.8860476433802954, 'recall': 0.8872180451127819, 'f1-score': 0.8865686807983574, 'support': 133}}
+climate
+vaccine
+(1064, 2049819)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  76.69172932330827
+              precision    recall  f1-score   support
+
+  conspiracy     0.5185    0.8485    0.6437        33
+  mainstream     0.9367    0.7400    0.8268       100
+
+    accuracy                         0.7669       133
+   macro avg     0.7276    0.7942    0.7352       133
+weighted avg     0.8329    0.7669    0.7814       133
+
+{'conspiracy': {'precision': 0.5185185185185185, 'recall': 0.8484848484848485, 'f1-score': 0.6436781609195402, 'support': 33}, 'mainstream': {'precision': 0.9367088607594937, 'recall': 0.74, 'f1-score': 0.8268156424581006, 'support': 100}, 'accuracy': 0.7669172932330827, 'macro avg': {'precision': 0.7276136896390061, 'recall': 0.7942424242424242, 'f1-score': 0.7352469016888203, 'support': 133}, 'weighted avg': {'precision': 0.8329473472711314, 'recall': 0.7669172932330827, 'f1-score': 0.7813755154598111, 'support': 133}}
+climate
+pizzagate
+(1064, 2049819)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  51.8796992481203
+              precision    recall  f1-score   support
+
+  conspiracy     0.3571    0.9722    0.5224        36
+  mainstream     0.9714    0.3505    0.5152        97
+
+    accuracy                         0.5188       133
+   macro avg     0.6643    0.6614    0.5188       133
+weighted avg     0.8052    0.5188    0.5171       133
+
+{'conspiracy': {'precision': 0.35714285714285715, 'recall': 0.9722222222222222, 'f1-score': 0.5223880597014925, 'support': 36}, 'mainstream': {'precision': 0.9714285714285714, 'recall': 0.35051546391752575, 'f1-score': 0.5151515151515151, 'support': 97}, 'accuracy': 0.518796992481203, 'macro avg': {'precision': 0.6642857142857143, 'recall': 0.661368843069874, 'f1-score': 0.5187697874265038, 'support': 133}, 'weighted avg': {'precision': 0.80515574650913, 'recall': 0.518796992481203, 'f1-score': 0.517110279089855, 'support': 133}}
+vaccine
+big.foot
+(1064, 1969584)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  79.69924812030075
+              precision    recall  f1-score   support
+
+  conspiracy     0.6596    0.7381    0.6966        42
+  mainstream     0.8721    0.8242    0.8475        91
+
+    accuracy                         0.7970       133
+   macro avg     0.7658    0.7811    0.7720       133
+weighted avg     0.8050    0.7970    0.7998       133
+
+{'conspiracy': {'precision': 0.6595744680851063, 'recall': 0.7380952380952381, 'f1-score': 0.6966292134831461, 'support': 42}, 'mainstream': {'precision': 0.872093023255814, 'recall': 0.8241758241758241, 'f1-score': 0.847457627118644, 'support': 91}, 'accuracy': 0.7969924812030075, 'macro avg': {'precision': 0.7658337456704601, 'recall': 0.7811355311355311, 'f1-score': 0.772043420300895, 'support': 133}, 'weighted avg': {'precision': 0.8049819005703274, 'recall': 0.7969924812030075, 'f1-score': 0.7998276017600657, 'support': 133}}
+vaccine
+flat.earth
+(1064, 1969584)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  79.69924812030075
+              precision    recall  f1-score   support
+
+  conspiracy     0.5909    0.7429    0.6582        35
+  mainstream     0.8989    0.8163    0.8556        98
+
+    accuracy                         0.7970       133
+   macro avg     0.7449    0.7796    0.7569       133
+weighted avg     0.8178    0.7970    0.8037       133
+
+{'conspiracy': {'precision': 0.5909090909090909, 'recall': 0.7428571428571429, 'f1-score': 0.6582278481012659, 'support': 35}, 'mainstream': {'precision': 0.898876404494382, 'recall': 0.8163265306122449, 'f1-score': 0.8556149732620321, 'support': 98}, 'accuracy': 0.7969924812030075, 'macro avg': {'precision': 0.7448927477017364, 'recall': 0.7795918367346939, 'f1-score': 0.756921410681649, 'support': 133}, 'weighted avg': {'precision': 0.817832374603516, 'recall': 0.7969924812030075, 'f1-score': 0.8036709929565673, 'support': 133}}
+vaccine
+climate
+(1064, 1969584)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  79.69924812030075
+              precision    recall  f1-score   support
+
+  conspiracy     0.5500    0.7097    0.6197        31
+  mainstream     0.9032    0.8235    0.8615       102
+
+    accuracy                         0.7970       133
+   macro avg     0.7266    0.7666    0.7406       133
+weighted avg     0.8209    0.7970    0.8052       133
+
+{'conspiracy': {'precision': 0.55, 'recall': 0.7096774193548387, 'f1-score': 0.619718309859155, 'support': 31}, 'mainstream': {'precision': 0.9032258064516129, 'recall': 0.8235294117647058, 'f1-score': 0.8615384615384616, 'support': 102}, 'accuracy': 0.7969924812030075, 'macro avg': {'precision': 0.7266129032258064, 'recall': 0.7666034155597723, 'f1-score': 0.7406283856988083, 'support': 133}, 'weighted avg': {'precision': 0.8208949793839437, 'recall': 0.7969924812030075, 'f1-score': 0.8051743660342623, 'support': 133}}
+vaccine
+vaccine
+(1064, 1969584)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  91.72932330827066
+              precision    recall  f1-score   support
+
+  conspiracy     0.8929    0.7576    0.8197        33
+  mainstream     0.9238    0.9700    0.9463       100
+
+    accuracy                         0.9173       133
+   macro avg     0.9083    0.8638    0.8830       133
+weighted avg     0.9161    0.9173    0.9149       133
+
+{'conspiracy': {'precision': 0.8928571428571429, 'recall': 0.7575757575757576, 'f1-score': 0.819672131147541, 'support': 33}, 'mainstream': {'precision': 0.9238095238095239, 'recall': 0.97, 'f1-score': 0.9463414634146342, 'support': 100}, 'accuracy': 0.9172932330827067, 'macro avg': {'precision': 0.9083333333333334, 'recall': 0.8637878787878788, 'f1-score': 0.8830067972810876, 'support': 133}, 'weighted avg': {'precision': 0.9161296097386323, 'recall': 0.9172932330827067, 'f1-score': 0.9149122305964833, 'support': 133}}
+vaccine
+pizzagate
+(1064, 1969584)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  75.93984962406014
+              precision    recall  f1-score   support
+
+  conspiracy     0.5357    0.8333    0.6522        36
+  mainstream     0.9221    0.7320    0.8161        97
+
+    accuracy                         0.7594       133
+   macro avg     0.7289    0.7826    0.7341       133
+weighted avg     0.8175    0.7594    0.7717       133
+
+{'conspiracy': {'precision': 0.5357142857142857, 'recall': 0.8333333333333334, 'f1-score': 0.6521739130434783, 'support': 36}, 'mainstream': {'precision': 0.922077922077922, 'recall': 0.7319587628865979, 'f1-score': 0.8160919540229885, 'support': 97}, 'accuracy': 0.7593984962406015, 'macro avg': {'precision': 0.7288961038961039, 'recall': 0.7826460481099656, 'f1-score': 0.7341329335332334, 'support': 133}, 'weighted avg': {'precision': 0.8174982911825016, 'recall': 0.7593984962406015, 'f1-score': 0.771723160975903, 'support': 133}}
+pizzagate
+big.foot
+(1064, 2441821)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  78.19548872180451
+              precision    recall  f1-score   support
+
+  conspiracy     0.6970    0.5476    0.6133        42
+  mainstream     0.8100    0.8901    0.8482        91
+
+    accuracy                         0.7820       133
+   macro avg     0.7535    0.7189    0.7308       133
+weighted avg     0.7743    0.7820    0.7740       133
+
+{'conspiracy': {'precision': 0.696969696969697, 'recall': 0.5476190476190477, 'f1-score': 0.6133333333333334, 'support': 42}, 'mainstream': {'precision': 0.81, 'recall': 0.8901098901098901, 'f1-score': 0.8481675392670157, 'support': 91}, 'accuracy': 0.7819548872180451, 'macro avg': {'precision': 0.7534848484848485, 'recall': 0.7188644688644689, 'f1-score': 0.7307504363001746, 'support': 133}, 'weighted avg': {'precision': 0.7743062200956939, 'recall': 0.7819548872180451, 'f1-score': 0.7740093689721688, 'support': 133}}
+pizzagate
+flat.earth
+(1064, 2441821)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  74.43609022556392
+              precision    recall  f1-score   support
+
+  conspiracy     0.5172    0.4286    0.4688        35
+  mainstream     0.8077    0.8571    0.8317        98
+
+    accuracy                         0.7444       133
+   macro avg     0.6625    0.6429    0.6502       133
+weighted avg     0.7313    0.7444    0.7362       133
+
+{'conspiracy': {'precision': 0.5172413793103449, 'recall': 0.42857142857142855, 'f1-score': 0.46875000000000006, 'support': 35}, 'mainstream': {'precision': 0.8076923076923077, 'recall': 0.8571428571428571, 'f1-score': 0.8316831683168318, 'support': 98}, 'accuracy': 0.7443609022556391, 'macro avg': {'precision': 0.6624668435013263, 'recall': 0.6428571428571428, 'f1-score': 0.6502165841584159, 'support': 133}, 'weighted avg': {'precision': 0.731257852854949, 'recall': 0.7443609022556391, 'f1-score': 0.7361744398124024, 'support': 133}}
+pizzagate
+climate
+(1064, 2441821)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  72.18045112781954
+              precision    recall  f1-score   support
+
+  conspiracy     0.4250    0.5484    0.4789        31
+  mainstream     0.8495    0.7745    0.8103       102
+
+    accuracy                         0.7218       133
+   macro avg     0.6372    0.6614    0.6446       133
+weighted avg     0.7505    0.7218    0.7330       133
+
+{'conspiracy': {'precision': 0.425, 'recall': 0.5483870967741935, 'f1-score': 0.47887323943661964, 'support': 31}, 'mainstream': {'precision': 0.8494623655913979, 'recall': 0.7745098039215687, 'f1-score': 0.8102564102564103, 'support': 102}, 'accuracy': 0.7218045112781954, 'macro avg': {'precision': 0.6372311827956989, 'recall': 0.661448450347881, 'f1-score': 0.644564824846515, 'support': 133}, 'weighted avg': {'precision': 0.750527528498666, 'recall': 0.7218045112781954, 'f1-score': 0.7330167238247297, 'support': 133}}
+pizzagate
+vaccine
+(1064, 2441821)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  73.68421052631578
+              precision    recall  f1-score   support
+
+  conspiracy     0.4815    0.7879    0.5977        33
+  mainstream     0.9114    0.7200    0.8045       100
+
+    accuracy                         0.7368       133
+   macro avg     0.6964    0.7539    0.7011       133
+weighted avg     0.8047    0.7368    0.7532       133
+
+{'conspiracy': {'precision': 0.48148148148148145, 'recall': 0.7878787878787878, 'f1-score': 0.5977011494252873, 'support': 33}, 'mainstream': {'precision': 0.9113924050632911, 'recall': 0.72, 'f1-score': 0.8044692737430168, 'support': 100}, 'accuracy': 0.7368421052631579, 'macro avg': {'precision': 0.6964369432723863, 'recall': 0.7539393939393939, 'f1-score': 0.701085211584152, 'support': 133}, 'weighted avg': {'precision': 0.8047227774076542, 'recall': 0.7368421052631579, 'f1-score': 0.7531659045513996, 'support': 133}}
+pizzagate
+pizzagate
+(1064, 2441821)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  93.98496240601504
+              precision    recall  f1-score   support
+
+  conspiracy     0.8889    0.8889    0.8889        36
+  mainstream     0.9588    0.9588    0.9588        97
+
+    accuracy                         0.9398       133
+   macro avg     0.9238    0.9238    0.9238       133
+weighted avg     0.9398    0.9398    0.9398       133
+
+{'conspiracy': {'precision': 0.8888888888888888, 'recall': 0.8888888888888888, 'f1-score': 0.8888888888888888, 'support': 36}, 'mainstream': {'precision': 0.9587628865979382, 'recall': 0.9587628865979382, 'f1-score': 0.9587628865979382, 'support': 97}, 'accuracy': 0.9398496240601504, 'macro avg': {'precision': 0.9238258877434136, 'recall': 0.9238258877434136, 'f1-score': 0.9238258877434136, 'support': 133}, 'weighted avg': {'precision': 0.9398496240601504, 'recall': 0.9398496240601504, 'f1-score': 0.9398496240601504, 'support': 133}}
+fe_cc_va_pg
+big.foot
+(1064, 2407980)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  82.70676691729322
+              precision    recall  f1-score   support
+
+  conspiracy     0.7714    0.6429    0.7013        42
+  mainstream     0.8469    0.9121    0.8783        91
+
+    accuracy                         0.8271       133
+   macro avg     0.8092    0.7775    0.7898       133
+weighted avg     0.8231    0.8271    0.8224       133
+
+{'conspiracy': {'precision': 0.7714285714285715, 'recall': 0.6428571428571429, 'f1-score': 0.7012987012987013, 'support': 42}, 'mainstream': {'precision': 0.8469387755102041, 'recall': 0.9120879120879121, 'f1-score': 0.8783068783068784, 'support': 91}, 'accuracy': 0.8270676691729323, 'macro avg': {'precision': 0.8091836734693878, 'recall': 0.7774725274725275, 'f1-score': 0.7898027898027898, 'support': 133}, 'weighted avg': {'precision': 0.8230934479054779, 'recall': 0.8270676691729323, 'f1-score': 0.8224095592516646, 'support': 133}}
+bf_cc_va_pg
+flat.earth
+(1064, 2401981)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  82.70676691729322
+              precision    recall  f1-score   support
+
+  conspiracy     0.6875    0.6286    0.6567        35
+  mainstream     0.8713    0.8980    0.8844        98
+
+    accuracy                         0.8271       133
+   macro avg     0.7794    0.7633    0.7706       133
+weighted avg     0.8229    0.8271    0.8245       133
+
+{'conspiracy': {'precision': 0.6875, 'recall': 0.6285714285714286, 'f1-score': 0.6567164179104478, 'support': 35}, 'mainstream': {'precision': 0.8712871287128713, 'recall': 0.8979591836734694, 'f1-score': 0.8844221105527638, 'support': 98}, 'accuracy': 0.8270676691729323, 'macro avg': {'precision': 0.7793935643564356, 'recall': 0.763265306122449, 'f1-score': 0.7705692642316058, 'support': 133}, 'weighted avg': {'precision': 0.822922094841063, 'recall': 0.8270676691729323, 'f1-score': 0.8244995598574174, 'support': 133}}
+bf_fe_va_pg
+climate
+(1064, 2472322)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  81.95488721804512
+              precision    recall  f1-score   support
+
+  conspiracy     0.7059    0.3871    0.5000        31
+  mainstream     0.8362    0.9510    0.8899       102
+
+    accuracy                         0.8195       133
+   macro avg     0.7710    0.6690    0.6950       133
+weighted avg     0.8058    0.8195    0.7990       133
+
+{'conspiracy': {'precision': 0.7058823529411765, 'recall': 0.3870967741935484, 'f1-score': 0.5, 'support': 31}, 'mainstream': {'precision': 0.8362068965517241, 'recall': 0.9509803921568627, 'f1-score': 0.8899082568807339, 'support': 102}, 'accuracy': 0.8195488721804511, 'macro avg': {'precision': 0.7710446247464503, 'recall': 0.6690385831752055, 'f1-score': 0.694954128440367, 'support': 133}, 'weighted avg': {'precision': 0.8058304991688146, 'recall': 0.8195488721804511, 'f1-score': 0.799027384976202, 'support': 133}}
+bf_fe_cc_pg
+vaccine
+(1064, 2529669)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  76.69172932330827
+              precision    recall  f1-score   support
+
+  conspiracy     0.5208    0.7576    0.6173        33
+  mainstream     0.9059    0.7700    0.8324       100
+
+    accuracy                         0.7669       133
+   macro avg     0.7134    0.7638    0.7249       133
+weighted avg     0.8103    0.7669    0.7790       133
+
+{'conspiracy': {'precision': 0.5208333333333334, 'recall': 0.7575757575757576, 'f1-score': 0.617283950617284, 'support': 33}, 'mainstream': {'precision': 0.9058823529411765, 'recall': 0.77, 'f1-score': 0.8324324324324326, 'support': 100}, 'accuracy': 0.7669172932330827, 'macro avg': {'precision': 0.7133578431372549, 'recall': 0.7637878787878788, 'f1-score': 0.7248581915248583, 'support': 133}, 'weighted avg': {'precision': 0.8103438743918621, 'recall': 0.7669172932330827, 'f1-score': 0.7790497264181476, 'support': 133}}
+bf_fe_cc_va
+pizzagate
+(1064, 2351881)
+Fitting 1 folds for each of 12 candidates, totalling 12 fits
+{'C': 0.01, 'loss': 'squared_hinge', 'random_state': 1291}
+SVM accuracy:  82.70676691729322
+              precision    recall  f1-score   support
+
+  conspiracy     0.6512    0.7778    0.7089        36
+  mainstream     0.9111    0.8454    0.8770        97
+
+    accuracy                         0.8271       133
+   macro avg     0.7811    0.8116    0.7929       133
+weighted avg     0.8407    0.8271    0.8315       133
+
+{'conspiracy': {'precision': 0.6511627906976745, 'recall': 0.7777777777777778, 'f1-score': 0.7088607594936709, 'support': 36}, 'mainstream': {'precision': 0.9111111111111111, 'recall': 0.845360824742268, 'f1-score': 0.8770053475935828, 'support': 97}, 'accuracy': 0.8270676691729323, 'macro avg': {'precision': 0.7811369509043928, 'recall': 0.8115693012600229, 'f1-score': 0.7929330535436269, 'support': 133}, 'weighted avg': {'precision': 0.8407491597210079, 'recall': 0.8270676691729323, 'f1-score': 0.8314925267545089, 'support': 133}}
