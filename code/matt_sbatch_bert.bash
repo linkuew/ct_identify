@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -A general
+#SBATCH -A r00018
 #SBATCH -p gpu
-#SBATCH --mail-user=mattfort@iu.edu
+#SBATCH --mail-user=eligabel@iu.edu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -11,8 +11,8 @@
 #SBATCH --mem=50gb
 #SBATCH --mail-type=FAIL,BEGIN,END
 #SBATCH --job-name=ct_%j
-#SBATCH -o ./../../out/base_out_%j.out
-#SBATCH -e ./../../err/base_error_%j.err
+#SBATCH -o base_out_%j.out
+#SBATCH -e base_error_%j.err
 
 # d, dataset to use
 # bf = bigfoot
@@ -28,7 +28,7 @@
 # -ep, epoch
 # -lr, learning rate
 
-module load python/gpu/3.10.10
+#module load python/gpu/3.10.10
 
 declare -a cts=("bf" "fe" "cc" "va" "pg")
 
@@ -38,16 +38,17 @@ declare -a cts=("bf" "fe" "cc" "va" "pg")
 tr="tmp"
 
 # testing set
-#te="bf"
+#recomment out
+#te="pg"
 
 # feature set, (dep, pos, wp, word, char, tp)
-feature="tp"
+#feature="tp"
 
 # epochs
 epochs=5
 
 # learning rate
-lr="1e-5"
+#lr="1e-5"
 
 # batch size
 batch=2
@@ -60,12 +61,14 @@ mode="merge"
 
 
 # test/train percentage
+#recomment out
 #trte_split="70,30"
 
 # ngram range
 #ngrams="1,3"
 
 #selection function (chi2, mutual_info_classif)
+#recomment out
 #selection="chi2"
 
 ##

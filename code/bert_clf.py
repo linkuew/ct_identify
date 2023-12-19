@@ -37,6 +37,8 @@ model = BartForSequenceClassification.from_pretrained(model_name, num_labels=2)
 # This is the script for running classification using transformer architectures.
 # Notice that currently, we only used the first 512 tokens for classification
 #
+#Later version, code modified to use 1024 tokens for classification
+#
 # It is basically same with the svm ones, but you probably need to run it on Carbonate GPU nodes
 # python bert_clf.py -d bf -e fe -m one -p 1 -l 1e-5 -b 5
 #
@@ -50,8 +52,8 @@ model = BartForSequenceClassification.from_pretrained(model_name, num_labels=2)
 def preprocess_function(dataset):
     tokenized_text = tokenizer(dataset['text'])
 
-    if len(tokenized_text['input_ids']) <= 512:
-        tokenized_text = tokenizer(dataset['text'], padding="max_length", max_length=513)
+    if len(tokenized_text['input_ids']) <= 1024:
+        tokenized_text = tokenizer(dataset['text'], padding="max_length", max_length=1025)
         words = []
         for entry in tokenized_text['input_ids']:
             if entry == 2:
@@ -59,18 +61,18 @@ def preprocess_function(dataset):
             else:
                 words.append(entry)
 
-        totalwords = words + tokenized_text['input_ids'][-512:]
+        totalwords = words + tokenized_text['input_ids'][-1024:]
 
-        totalattention = tokenized_text['attention_mask'][-512:] \
-                        + tokenized_text['attention_mask'][-512:]
+        totalattention = tokenized_text['attention_mask'][-1024:] \
+                        + tokenized_text['attention_mask'][-1024:]
 
     else:
-        first512_words = tokenized_text['input_ids'][:512]
-        last512_words = tokenized_text['input_ids'][-512:]
+        first512_words = tokenized_text['input_ids'][:1024]
+        last512_words = tokenized_text['input_ids'][-1024:]
         totalwords = first512_words + last512_words
 
-        first512_attention = tokenized_text['attention_mask'][:512]
-        last512_attention = tokenized_text['attention_mask'][-512:]
+        first512_attention = tokenized_text['attention_mask'][:1024]
+        last512_attention = tokenized_text['attention_mask'][-1024:]
         totalattention = first512_attention + last512_attention
 
     tokenized_text['input_ids'] = torch.LongTensor([totalwords]).squeeze(0)
@@ -177,7 +179,7 @@ def main():
     preds = np.argmax(predictions.predictions[1], axis=-1)
 
     # dataset eval
-    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'_epochs_'+str(ep)+'_time_'+str(time.time())+'.csv'
+    out_res = outpath+'res_tr_'+seed+'_te_'+seed_eval+'_epochs_'+str(ep)+'_time_'+str(time.time())+'lizzy'+'.csv'
 
     transform_labels = ['mainstream' if x == 0 else x for x in preds]
     transform_labels = ['conspiracy' if x == 1 else x for x in transform_labels]
